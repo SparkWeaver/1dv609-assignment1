@@ -18,8 +18,12 @@ public class Dice {
         value = roll();
     }
 
+    public int getValue() {
+        return value;
+    }
+
     public int roll() {
         value = random.nextInt((max - MIN) + 1) + MIN;
-        return value;
+        return getValue();
     }
 }
