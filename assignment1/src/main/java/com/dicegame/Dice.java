@@ -4,16 +4,22 @@ import java.util.Random;
 
 public class Dice {
 
-    private static int DEFAULT_SIZE = 6;
     private Random random = new Random();
     private int value;
+    private final int MIN = 1;
+    private int max;
 
     public Dice() {
-        value = random.nextInt(DEFAULT_SIZE) + 1;
+        this(6);
+    }
+
+    public Dice(int diceSize) {
+        max = diceSize;
+        value = roll();
     }
 
     public int roll() {
-        value = random.nextInt(DEFAULT_SIZE) + 1;
+        value = random.nextInt((max - MIN) + 1) + MIN;
         return value;
     }
 }
