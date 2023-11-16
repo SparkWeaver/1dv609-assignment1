@@ -5,8 +5,9 @@ import java.util.Random;
 public class Dice {
 
     private Random random = new Random();
-    private int value;
     private final int MIN = 1;
+    private final int MIN_SIZE = 4;
+    private int value;
     private int max;
 
     public Dice() {
@@ -14,6 +15,10 @@ public class Dice {
     }
 
     public Dice(int diceSize) {
+        if (diceSize < MIN_SIZE) {
+            throw new IllegalArgumentException("Dice size must be at least 4");
+        }
+
         max = diceSize;
         value = roll();
     }

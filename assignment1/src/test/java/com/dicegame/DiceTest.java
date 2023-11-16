@@ -49,8 +49,6 @@ public class DiceTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorThrowExceptionForDiceSizeSmallerThanFour() {
-        
         new Dice(2);
-        
     }
 }
