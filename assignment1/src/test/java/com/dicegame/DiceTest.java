@@ -1,7 +1,6 @@
 package com.dicegame;
 
 import org.junit.Test;
-
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -51,5 +50,24 @@ public class DiceTest {
         } catch (IllegalArgumentException e) {
             //Passes
         }
+    }
+
+    @Test
+    public void rollRandomlyAssignNewValueToDice() {
+        Dice dice = new Dice();
+        int previousRoll = dice.roll();
+        Boolean variation = false;
+
+        int currentRoll;
+        for(int i = 0; i < 100; i++) {
+            currentRoll = dice.roll();
+            if(currentRoll != previousRoll) {
+               variation = true;
+               break; 
+            }
+            previousRoll = currentRoll;
+        }
+
+        assertTrue("Dice roll should vary over multiple rolls", variation);
     }
 }
