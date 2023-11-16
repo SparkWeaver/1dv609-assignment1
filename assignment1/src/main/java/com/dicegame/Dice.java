@@ -5,10 +5,10 @@ import java.util.Random;
 public class Dice {
 
     private Random random = new Random();
-    private final int MIN = 1;
     private final int MIN_SIZE = 4;
+    private final int MIN = 1;
+    private final int max;
     private int value;
-    private int max;
 
     public Dice() {
         this(6);
@@ -23,12 +23,12 @@ public class Dice {
         value = roll();
     }
 
-    public int getValue() {
+    public int value() {
         return value;
     }
 
     public int roll() {
         value = random.nextInt((max - MIN) + 1) + MIN;
-        return getValue();
+        return value();
     }
 }
