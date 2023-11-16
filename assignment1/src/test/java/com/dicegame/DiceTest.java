@@ -31,4 +31,17 @@ public class DiceTest {
             assertTrue(message + result, result >= 1 && result <= specifiedSize);
         }
     }
+
+    @Test
+    public void theGetMethodReturnsTheSameValueAsRoll() {
+        int size = 21;
+        Dice dice = new Dice(size);
+        String message = "Get value should be the same as the roll value";
+
+        int result;
+        for(int i = 0; i < 100; i++) {
+            result = dice.roll();
+            assertTrue(message, result == dice.getValue());
+        }
+    }
 }
