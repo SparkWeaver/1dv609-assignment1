@@ -2,7 +2,9 @@ package com.dicegame;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class DiceTest {
     
@@ -43,5 +45,12 @@ public class DiceTest {
             result = dice.roll();
             assertTrue(message, result == dice.getValue());
         }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorThrowExceptionForDiceSizeSmallerThanFour() {
+        
+        new Dice(2);
+        
     }
 }
