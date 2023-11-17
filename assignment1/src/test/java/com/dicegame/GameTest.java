@@ -28,6 +28,7 @@ public class GameTest {
 
         player1 = new Player("Jon");
         player2 = new Player("Sara");
+
         game = new Game(Arrays.asList(player1, player2), Arrays.asList(mockDice));
     }
 
@@ -50,4 +51,5 @@ public class GameTest {
         List<Dice> expectedDices = Arrays.asList(mockDice);
         assertEquals("Game should have the correct dices",expectedDices, game.getDices());
     }
+
 }

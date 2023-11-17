@@ -23,13 +23,13 @@ public class Dice {
 <span class="fc" id="L23">        value = roll();</span>
 <span class="fc" id="L24">    }</span>
 
-    public int value() {
+    public int getValue() {
 <span class="fc" id="L27">        return value;</span>
     }
 
     public int roll() {
 <span class="fc" id="L31">        value = random.nextInt((max - MIN) + 1) + MIN;</span>
-<span class="fc" id="L32">        return value();</span>
+<span class="fc" id="L32">        return getValue();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
