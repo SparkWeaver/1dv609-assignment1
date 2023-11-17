@@ -36,6 +36,7 @@ public class GameTest {
         assertNotNull("Game should not be null", game);
         assertNotNull("Player1 should not be null", player1);
         assertNotNull("Player2 should not be null", player2);
+        assertNotNull("Dices should not be null", mockDice);
     }
 
     @Test
@@ -45,7 +46,7 @@ public class GameTest {
     }
 
     @Test
-    public void gameShouldInitializeCorrectDice() {
+    public void gameShouldHaveCorrectDice() {
         List<Dice> expectedDices = Arrays.asList(mockDice);
         assertEquals("Game should have the correct dices",expectedDices, game.getDices());
     }
