@@ -55,7 +55,6 @@ public class PlayerTest {
             new Player("");
             fail();
         } catch (IllegalArgumentException e) {
-            //Passes
         }
     }
 }
