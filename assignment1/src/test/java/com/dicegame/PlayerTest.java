@@ -48,4 +48,14 @@ public class PlayerTest {
             //Passes
         }
     }
+
+    @Test
+    public void constructorThrowExceptionIFNameIsToShort() {
+        try {
+            new Player("");
+            fail();
+        } catch (IllegalArgumentException e) {
+            //Passes
+        }
+    }
 }

@@ -19,6 +19,10 @@ public class Player {
     }
 
     public void throwDice(Dice[] dices) {
+        if (dices == null || dices.length == 0) {
+            throw new IllegalArgumentException("Dice array cannot be empty");
+        }
+
         for(Dice dice : dices) {
             score += dice.roll();
         }
