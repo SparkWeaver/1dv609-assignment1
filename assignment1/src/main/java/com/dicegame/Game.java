@@ -9,7 +9,11 @@ public class Game {
 
     public Game(List<Player> players) {
         this.players = players;
-        isGameActive = true;
+        isGameActive = false;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
     
 }
