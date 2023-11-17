@@ -28,7 +28,7 @@ public class GameTest {
 
         player1 = new Player("Jon");
         player2 = new Player("Sara");
-        game = new Game(Arrays.asList(player1, player2));
+        game = new Game(Arrays.asList(player1, player2), Arrays.asList(mockDice));
     }
 
     @Test
