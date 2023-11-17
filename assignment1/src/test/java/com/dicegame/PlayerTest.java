@@ -36,4 +36,16 @@ public class PlayerTest {
         player.throwDice(mockedDices);
         assertEquals(14, player.getScore());
     }
+
+    @Test
+    public void throwDiceThrowExceptionForEmptyDiceArray() {
+        Player player = new Player("Jon");
+        Dice[] emptyDices = new Dice[0];
+        try {
+            player.throwDice(emptyDices);
+            fail();
+        } catch (IllegalArgumentException e) {
+            //Passes
+        }
+    }
 }
