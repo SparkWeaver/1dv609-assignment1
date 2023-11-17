@@ -17,4 +17,10 @@ public class Player {
     public int getScore() {
         return score;
     }
+
+    public void throwDice(Dice[] dices) {
+        for(Dice dice : dices) {
+            score += dice.roll();
+        }
+    }
 }
