@@ -5,6 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class GameTest {
 
@@ -24,5 +25,11 @@ public class GameTest {
         assertNotNull("Game should not be null", game);
         assertNotNull("Player1 should not be null", player1);
         assertNotNull("Player2 should not be null", player2);
-    }    
+    }
+
+    @Test
+    public void gameShouldHaveCorrectPlayers() {
+        List<Player> expectedPlayers = Arrays.asList(player1, player2);
+        assertEquals("Game should have the correct players", expectedPlayers, game.getPlayers());
+    }
 }
