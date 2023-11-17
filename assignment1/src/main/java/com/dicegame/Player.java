@@ -6,6 +6,10 @@ public class Player {
     private int score;
 
     public Player(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+
         this.name = name;
         score = 0;
     }

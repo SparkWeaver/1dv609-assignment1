@@ -45,7 +45,6 @@ public class PlayerTest {
             player.throwDice(emptyDices);
             fail();
         } catch (IllegalArgumentException e) {
-            //Passes
         }
     }
 
