@@ -38,7 +38,7 @@ public class DiceTest {
 
         for(int i = 0; i < 100; i++) {
             assertTrue("Get value should be the same as the roll value", 
-                dice.roll() == dice.value());
+                dice.roll() == dice.getValue());
         }
     }
 
