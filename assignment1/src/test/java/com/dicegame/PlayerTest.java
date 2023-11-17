@@ -4,19 +4,18 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 public class PlayerTest {
     
     @Test
-    public void getNameReturnCorrectName() {
+    public void getNameShouldReturnCorrectName() {
         String name = "Jon Goodman";
         Player player = new Player(name);
         assertEquals(name, player.getName());
     }
 
     @Test
-    public void getScoreReturnZeroWhenPlayerIsInitialized() {
+    public void getScoreShouldReturnZeroWhenPlayerIsInitialized() {
         Player player = new Player("Jon");
         assertEquals(0, player.getScore());
     }
@@ -37,23 +36,15 @@ public class PlayerTest {
         assertEquals(14, player.getScore());
     }
 
-    @Test
-    public void throwDiceThrowExceptionForEmptyDiceArray() {
+    @Test(expected = IllegalArgumentException.class)
+    public void throwDiceShouldThrowExceptionForEmptyDiceArray() {
         Player player = new Player("Jon");
         Dice[] emptyDices = new Dice[0];
-        try {
-            player.throwDice(emptyDices);
-            fail();
-        } catch (IllegalArgumentException e) {
-        }
+        player.throwDice(emptyDices);
     }
 
-    @Test
-    public void constructorThrowExceptionIFNameIsToShort() {
-        try {
-            new Player("");
-            fail();
-        } catch (IllegalArgumentException e) {
-        }
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorShouldThrowExceptionForEmptyName() {
+        new Player("");
     }
 }
