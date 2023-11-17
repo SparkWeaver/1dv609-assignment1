@@ -47,4 +47,9 @@ public class PlayerTest {
     public void constructorShouldThrowExceptionForEmptyName() {
         new Player("");
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorShouldThrowExceptionForNullName() {
+        new Player(null);
+    }
 }
