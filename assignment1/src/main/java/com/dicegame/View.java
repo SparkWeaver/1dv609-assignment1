@@ -20,8 +20,10 @@ public class View {
     }
 
     public void printTitleAndInstructions() {
+        System.out.println("");
         System.out.println("[ title ]");
         System.out.println("[ instructions ]");
+        System.out.println("");
     }
     
     /** Methods below should be removed when done TODO */

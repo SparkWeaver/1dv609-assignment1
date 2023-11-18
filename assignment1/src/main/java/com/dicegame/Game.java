@@ -48,7 +48,6 @@ public class Game {
             }
             checkForWinner();
         }
-
     }
 
     private void checkForWinner() {

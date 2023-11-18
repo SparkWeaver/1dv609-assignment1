@@ -10,7 +10,8 @@ public class App {
         app.initGame();
     }
 
-    public void initGame() {   
+    public void initGame() {
+        view.printTitleAndInstructions();
         String name = view.promptForPlayerName();
 
         game = new Game(name);
