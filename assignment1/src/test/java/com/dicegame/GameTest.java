@@ -11,7 +11,9 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GameTest {
 
@@ -65,5 +67,15 @@ public class GameTest {
         game.start();
         assertEquals("Player 1 should have 7 score after first round", 21, player1.getScore());
         assertEquals("Player 2 should have 7 score after first round", 21, player2.getScore());
+    }
+
+    @Test
+    public void DuplicatePlayerNamesShouldBePrevented() {
+        Game game = new Game("Emma");
+        List<Player> players = game.getPlayers();
+        Set<Player> set = new HashSet<>(players);
+
+        assertTrue(String.format("Got %d", set.size()),set.size() != players.size());
+
     }
 }
