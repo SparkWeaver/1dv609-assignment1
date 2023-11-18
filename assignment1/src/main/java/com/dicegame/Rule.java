@@ -8,10 +8,11 @@ public class Rule {
     }
 
     public Decision makeDecision(int playerScore, int diceValue) {
-        if(playerScore + diceValue < scoreLimit) {
+        if(playerScore + diceValue > scoreLimit - 10) {
+            return Decision.STAY;
+        } else {
             return Decision.THROW_AGAIN;
         }
-        return Decision.BUST;
     }
 
     public enum Decision {
