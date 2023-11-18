@@ -26,10 +26,8 @@ public class BotPlayer extends Player {
 
             if(decision == Decision.BUST || decision == Decision.HOLD) {
                 state = State.NON_ACTIVE;
-                score += diceSum;
                 break;
             } else if (decision == Decision.STAY) {
-                score += diceSum;
                 break;
             }
         }
