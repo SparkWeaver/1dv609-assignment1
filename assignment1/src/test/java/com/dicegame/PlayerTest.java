@@ -9,19 +9,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 public class PlayerTest {
 
     private Player player;
-    private Player bot;
     private String name;
 
     @Before
     public void setUp() {
         name = "TED";
         player = new Player(name);
-        bot = new Player(name);
     }
 
     
