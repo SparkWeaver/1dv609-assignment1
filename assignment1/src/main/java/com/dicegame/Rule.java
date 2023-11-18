@@ -8,6 +8,10 @@ public class Rule {
     }
 
     public Decision makeDecision(int playerScore, int diceValue) {
+        if (playerScore < 0) {
+            throw new IllegalArgumentException("Player score must be non-negative.");
+        }
+
         int newScore = playerScore + diceValue;
         if(newScore > scoreLimit) {
             return Decision.BUST;
