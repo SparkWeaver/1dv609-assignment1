@@ -8,11 +8,10 @@ public class Game {
     private enum PlayerName {
         Emma,
         James,
-        Sophia,
-        Michael,
-        Olivia
+        Sophia
     }
 
+    private final String RESERVENAME = "Jon";
     private List<Player> players;
     private List<Dice> dices;
     private boolean isGameActive;
@@ -24,7 +23,12 @@ public class Game {
 
         players.add(new Player(name));
         for (PlayerName playerName : PlayerName.values()) {
-            players.add(new Player(playerName.name()));
+            Player newPlayer = new Player(playerName.name());
+            if(players.contains(newPlayer)) {
+                players.add(new Player(RESERVENAME));
+            } else {
+                players.add(newPlayer);
+            }
         }
 
         for(int i = 0; i < 1; i++) {
