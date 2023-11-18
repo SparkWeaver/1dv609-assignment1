@@ -30,11 +30,12 @@ public class ViewTest {
 
     @Test
     public void promptForPlayerNameDoesNotReturnLargeNameString() {
+        String expected = "Jon the Magnificent";
         Scanner mockScanner = Mockito.mock(Scanner.class);
-        when(mockScanner.nextLine()).thenReturn("0123456789-0123456789-0123456789", "Jon the Magnificent");
+        when(mockScanner.nextLine()).thenReturn("0123456789-0123456789-0123456789", expected);
         view.setScanner(mockScanner);
 
         String result = view.promptForPlayerName();
-        assertEquals("Jon the Magnificent", result);
+        assertEquals(expected, result);
     }
 }
