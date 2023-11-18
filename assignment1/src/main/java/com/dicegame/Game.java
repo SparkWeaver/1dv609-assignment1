@@ -1,5 +1,6 @@
 package com.dicegame;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Game {
@@ -28,6 +29,11 @@ public class Game {
 
     public void start() {
         isGameActive = true;
+        Dice[] arrDices = dices.toArray(new Dice[0]);
+
+        for(Player player : players) {
+            player.throwDice(arrDices);
+        }
     }
 
 }
