@@ -18,6 +18,11 @@ public class View {
             }
         }
     }
+
+    public void printTitleAndInstructions() {
+        System.out.println("[ title ]");
+        System.out.println("[ instructions ]");
+    }
     
     /** Methods below should be removed when done TODO */
     public void setScanner(Scanner scanner) {

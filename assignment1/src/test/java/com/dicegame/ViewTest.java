@@ -66,9 +66,7 @@ public class ViewTest {
         View view = new View();
         view.printTitleAndInstructions();
 
-        String expectedOutput = 
-            "[ title ]\n" +
-            "[instructions]\n";
+        String expectedOutput = "[ title ]" + System.lineSeparator() + "[ instructions ]" + System.lineSeparator();
         assertEquals(expectedOutput, outContent.toString());
     }
 
