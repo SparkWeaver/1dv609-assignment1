@@ -24,6 +24,9 @@ public class ViewTest {
         Scanner mockScanner = Mockito.mock(Scanner.class);
         when(mockScanner.nextLine()).thenReturn(null, expected);
         view.setScanner(mockScanner);
+
+        String result = view.promptForPlayerName();
+        assertEquals(expected, result);
     }
     
     @Test
