@@ -24,8 +24,8 @@ public class BotPlayerTest {
         name = "TED";
         botPlayer = new BotPlayer(name);
 
-        Dice mockDice1 = Mockito.mock(Dice.class);
-        Dice mockDice2 = Mockito.mock(Dice.class);
+        mockDice1 = Mockito.mock(Dice.class);
+        mockDice2 = Mockito.mock(Dice.class);
 
         when(mockDice1.roll()).thenReturn(5);
         when(mockDice2.roll()).thenReturn(5);
@@ -37,7 +37,8 @@ public class BotPlayerTest {
     @Test
     public void testBotDecisionToRollAgain() {
         botPlayer.throwDice(mockedDices);
-        assertEquals(botPlayer.State.ACTIVE, botPlayer.getState());
+        assertEquals(Player.State.ACTIVE, botPlayer.getState());
         assertEquals(10, botPlayer.getScore());
     }
+
 }

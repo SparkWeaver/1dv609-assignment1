@@ -4,9 +4,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class Player {
+
+    public enum State {
+        ACTIVE,
+        NON_ACTIVE
+    }
     
+    protected State state;
     private final String name;
-    private int score;
+    protected int score;
 
     public Player(String name) {
         if (name == null || name.trim().isEmpty()) {
@@ -14,6 +20,7 @@ public class Player {
         }
 
         this.name = name;
+        state = State.ACTIVE;
         score = 0;
     }
 
@@ -23,6 +30,10 @@ public class Player {
 
     public int getScore() {
         return score;
+    }
+
+    public State getState() {
+        return state;
     }
 
     public void throwDice(List<Dice> dices) {
