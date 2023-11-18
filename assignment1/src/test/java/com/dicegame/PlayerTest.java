@@ -1,5 +1,6 @@
 package com.dicegame;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
@@ -10,24 +11,29 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class PlayerTest {
+
+    private Player player;
+    private String name;
+
+    @Before
+    public void setUp() {
+        name = "TED";
+        player = new Player(name);
+    }
+
     
     @Test
     public void getNameShouldReturnCorrectName() {
-        String name = "Jon Goodman";
-        Player player = new Player(name);
         assertEquals(name, player.getName());
     }
 
     @Test
     public void getScoreShouldReturnZeroWhenPlayerIsInitialized() {
-        Player player = new Player("Jon");
         assertEquals(0, player.getScore());
     }
 
     @Test
     public void rollDiceShouldUpdateScoreCorrectly() {
-        Player player = new Player("Jon");
-
         Dice mockDice1 = Mockito.mock(Dice.class);
         Dice mockDice2 = Mockito.mock(Dice.class);
 
@@ -42,7 +48,6 @@ public class PlayerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void throwDiceShouldThrowExceptionForEmptyDiceArray() {
-        Player player = new Player("Jon");
         List<Dice> emptyDices = Arrays.asList( new Dice[0] );
         player.throwDice(emptyDices);
     }
@@ -56,4 +61,5 @@ public class PlayerTest {
     public void constructorShouldThrowExceptionForNullName() {
         new Player(null);
     }
+
 }
