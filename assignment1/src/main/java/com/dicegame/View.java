@@ -13,7 +13,7 @@ public class View {
             System.out.print("Enter your name: ");
             name = scanner.nextLine();
 
-            if(!name.trim().isEmpty() && name.trim().length() < 30) {
+            if(name != null && !name.trim().isEmpty() && name.trim().length() < 30) {
                 return name;
             }
         }
