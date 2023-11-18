@@ -30,5 +30,8 @@ public class RuleTest {
         assertEquals(Rule.Decision.BUST, rule.makeDecision(10, 12));
     }
 
-
+    @Test
+    public void testHoldDecision() {
+        assertEquals(Rule.Decision.HOLD, rule.makeDecision(10, 9));
+    }
 }
