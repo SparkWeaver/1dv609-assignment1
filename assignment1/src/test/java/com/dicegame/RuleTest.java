@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class RuleTest {
-    
+
     private Rule rule;
     private final int scoreLimit = 21;
 
@@ -18,6 +18,11 @@ public class RuleTest {
     @Test
     public void testRollAgainDecision() {
         assertEquals(Rule.Decision.THROW_AGAIN, rule.makeDecision(10, 5));
+    }
+
+    @Test
+    public void testStayDecision() {
+        assertEquals(Rule.Decision.STAY, rule.makeDecision(10, 5));
     }
 
 }
