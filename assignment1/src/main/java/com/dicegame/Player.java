@@ -1,5 +1,7 @@
 package com.dicegame;
 
+import java.util.List;
+
 public class Player {
     
     private final String name;
@@ -22,8 +24,8 @@ public class Player {
         return score;
     }
 
-    public void throwDice(Dice[] dices) {
-        if (dices == null || dices.length == 0) {
+    public void throwDice(List<Dice> dices) {
+        if (dices == null || dices.size() == 0) {
             throw new IllegalArgumentException("Dice array cannot be empty");
         }
 

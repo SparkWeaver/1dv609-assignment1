@@ -3,6 +3,10 @@ package com.dicegame;
 import org.junit.Test;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public class PlayerTest {
@@ -30,7 +34,7 @@ public class PlayerTest {
         when(mockDice1.roll()).thenReturn(7);
         when(mockDice2.roll()).thenReturn(7);
 
-        Dice[] mockedDices = { mockDice1, mockDice2 };
+        List<Dice> mockedDices = Arrays.asList(mockDice1, mockDice2);
 
         player.throwDice(mockedDices);
         assertEquals(14, player.getScore());
@@ -39,7 +43,7 @@ public class PlayerTest {
     @Test(expected = IllegalArgumentException.class)
     public void throwDiceShouldThrowExceptionForEmptyDiceArray() {
         Player player = new Player("Jon");
-        Dice[] emptyDices = new Dice[0];
+        List<Dice> emptyDices = Arrays.asList( new Dice[0] );
         player.throwDice(emptyDices);
     }
 
