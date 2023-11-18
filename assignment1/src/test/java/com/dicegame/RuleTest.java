@@ -25,4 +25,8 @@ public class RuleTest {
         assertEquals(Rule.Decision.STAY, rule.makeDecision(10, 5));
     }
 
+    @Test
+    public void testBustDecision() {
+        assertEquals(Rule.Decision.BUST, rule.makeDecision(10, 12));
+    }
 }
