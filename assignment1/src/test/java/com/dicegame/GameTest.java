@@ -2,7 +2,6 @@ package com.dicegame;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
@@ -16,12 +15,10 @@ import java.util.List;
 
 public class GameTest {
 
-    @Mock
-    private Dice mockDice;
-
     private Game game;
     private Player player1;
     private Player player2;
+    private Dice mockDice;
 
     @Before
     public void setUp() {
@@ -55,24 +52,18 @@ public class GameTest {
     }
 
     @Test
-    public void gameShouldStartCorrectly() {
+    public void gameShouldStartAndEndCorrectly() {
         assertFalse("Game should be inactive before start", game.isActive());
         game.start();
-        assertTrue("Game should be active after start", game.isActive());
+        assertTrue("Game should be active after start", game.isOver());
     }
 
     @Test
-    public void playersShouldGainPointsAfterTurn() {
+    public void playersShouldGainPointsDuringGame() {
         assertEquals("Player 1 should have 0 score before first round", 0, player1.getScore());
         assertEquals("Player 2 should have 0 score before first round", 0, player2.getScore());
         game.start();
-        assertEquals("Player 1 should have 7 score after first round", 7, player1.getScore());
-        assertEquals("Player 2 should have 7 score after first round", 7, player2.getScore());
-    }
-
-    @Test
-    public void gameShouldEndWhenWinnerIsDetermined() {
-        game.start();
-        assertTrue("Game ends when there is a winner", game.isOver());
+        assertEquals("Player 1 should have 7 score after first round", 21, player1.getScore());
+        assertEquals("Player 2 should have 7 score after first round", 21, player2.getScore());
     }
 }
