@@ -18,7 +18,7 @@ public class Game {
     private boolean isGameActive;
     private boolean isGameOver;
 
-    public Game(String name, int numDices) {
+    public Game(String name) {
         players = new LinkedList<Player>();
         dices = new LinkedList<Dice>();
 
@@ -27,7 +27,7 @@ public class Game {
             players.add(new Player(playerName.name()));
         }
 
-        for(int i = 0; i < numDices; i++) {
+        for(int i = 0; i < 1; i++) {
             dices.add(new Dice());
         }
 

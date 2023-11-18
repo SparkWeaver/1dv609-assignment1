@@ -24,7 +24,7 @@ public class AppTest {
 
     @Test
     public void gameShouldInitializeWithPlayerNameFromView() {
-        View mockView = mock(View.class);
+        View mockView = Mockito.mock(View.class);
         when(mockView.promptForPlayerName()).thenReturn("Jon");
 
         App app = new App();

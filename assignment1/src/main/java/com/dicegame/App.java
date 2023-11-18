@@ -1,17 +1,19 @@
 package com.dicegame;
 
 public class App {
+
+    private View view = new View();
     private Game game;
-    private View view;
 
     public static void main(String[] args) {
         App app = new App();
         app.startGame();
     }
 
-    public void startGame() {
-        view = new View();
-        game = new Game("Jon", 1);
+    public void startGame() {   
+        String name = view.promptForPlayerName();
+
+        game = new Game(name);
     }
 
     public Game getGame() {
@@ -20,5 +22,9 @@ public class App {
 
     public View getView() {
         return view;
+    }
+
+    public void setView(View view) {
+        this.view = view;
     }
 }

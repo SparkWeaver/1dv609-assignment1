@@ -1,6 +1,7 @@
 package com.dicegame;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Player {
     
@@ -32,5 +33,13 @@ public class Player {
         for(Dice dice : dices) {
             score += dice.roll();
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
+        Player player = (Player) obj;
+        return Objects.equals(name, player.getName());
     }
 }
