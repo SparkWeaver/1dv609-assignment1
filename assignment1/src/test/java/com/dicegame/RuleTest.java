@@ -42,4 +42,9 @@ public class RuleTest {
     public void makeDecisionShouldThrowExceptionPlayerScoreIsNegative() {
         rule.makeDecision(-1, 2);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void makeDecisionShouldThrowExceptionDiceValueIsNegative() {
+        rule.makeDecision(2, -1);
+    }
 }
