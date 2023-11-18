@@ -70,4 +70,9 @@ public class GameTest {
         assertEquals("Player 2 should have 7 score after first round", 7, player2.getScore());
     }
 
+    @Test
+    public void gameShouldEndWhenWinnerIsDetermined() {
+        game.start();
+        assertTrue("Game ends when there is a winner", game.isOver());
+    }
 }
