@@ -41,4 +41,11 @@ public class BotPlayerTest {
         assertEquals(10, botPlayer.getScore());
     }
 
+    @Test
+    public void testBotDecisionToHold() {
+        botPlayer.throwDice(mockedDices);
+        botPlayer.throwDice(mockedDices);
+        assertEquals(Player.State.NON_ACTIVE, botPlayer.getState());
+        assertEquals(20, botPlayer.getScore());
+    }
 }
