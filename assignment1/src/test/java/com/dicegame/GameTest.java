@@ -61,4 +61,13 @@ public class GameTest {
         assertTrue("Game should be active after start", game.isActive());
     }
 
+    @Test
+    public void playersShouldGainPointsAfterTurn() {
+        assertEquals("Player 1 should have 0 score before first round", 0, player1.getScore());
+        assertEquals("Player 2 should have 0 score before first round", 0, player2.getScore());
+        game.start();
+        assertEquals("Player 1 should have 7 score after first round", 7, player1.getScore());
+        assertEquals("Player 2 should have 7 score after first round", 7, player2.getScore());
+    }
+
 }
