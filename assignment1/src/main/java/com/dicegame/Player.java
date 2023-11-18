@@ -42,4 +42,9 @@ public class Player {
         Player player = (Player) obj;
         return Objects.equals(name, player.getName());
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }
