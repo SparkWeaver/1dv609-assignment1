@@ -7,6 +7,7 @@ import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -50,6 +51,13 @@ public class GameTest {
     public void gameShouldHaveCorrectDice() {
         List<Dice> expectedDices = Arrays.asList(mockDice);
         assertEquals("Game should have the correct dices",expectedDices, game.getDices());
+    }
+
+    @Test
+    public void gameShouldStartCorrectly() {
+        assertFalse("Game should be inactive before start", game.isActive());
+        game.start();
+        assertTrue("Game should be active after start"game.isActive());
     }
 
 }
