@@ -22,5 +22,12 @@ public class Game {
         return dices;
     }
     
-    
+    public boolean isActive() {
+        return isGameActive;
+    }
+
+    public void start() {
+        isGameActive = true;
+    }
+
 }

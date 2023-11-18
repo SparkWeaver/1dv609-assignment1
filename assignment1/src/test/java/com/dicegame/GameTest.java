@@ -6,6 +6,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
@@ -57,7 +58,7 @@ public class GameTest {
     public void gameShouldStartCorrectly() {
         assertFalse("Game should be inactive before start", game.isActive());
         game.start();
-        assertTrue("Game should be active after start"game.isActive());
+        assertTrue("Game should be active after start", game.isActive());
     }
 
 }
