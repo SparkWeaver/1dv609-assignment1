@@ -21,4 +21,19 @@ public class AppTest {
         assertNotNull("Game should be initialized", app.getGame());
         assertNotNull("View should be initialized", app.getView());
     }
+
+    @Test
+    public void gameShouldInitializeWithPlayerNameFromView() {
+        View mockView = mock(View.class);
+        when(mockView.promptForPlayerName()).thenReturn("Jon");
+
+        App app = new App();
+        app.setView(mockView);
+        app.startGame();
+
+        Game game = app.getGame();
+
+        assertTrue("Game should include player with name from View",
+            game.getPlayers().contains(new Player("Jon")));
+    }
 }
