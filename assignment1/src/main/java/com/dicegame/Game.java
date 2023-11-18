@@ -39,29 +39,6 @@ public class Game {
         isGameOver = false;
     }
 
-    public Game(List<Player> players, List<Dice> dices) {
-        this.players = players;
-        this.dices = dices;
-        isGameActive = false;
-        isGameOver = false;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public List<Dice> getDices() {
-        return dices;
-    }
-    
-    public boolean isActive() {
-        return isGameActive;
-    }
-
-    public boolean isOver() {
-        return isGameOver;
-    }
-
     public void start() {
         isGameActive = true;
 
@@ -81,5 +58,27 @@ public class Game {
                 isGameOver = true;
             }
         }
+    }
+
+    /** Below should be removed later on */
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public List<Dice> getDices() {
+        return dices;
+    }
+
+    public boolean isActive() {
+        return isGameActive;
+    }
+
+    public boolean isOver() {
+        return isGameOver;
+    }
+
+    public void setDice(List<Dice> dices) {
+        this.dices = dices;
     }
 }

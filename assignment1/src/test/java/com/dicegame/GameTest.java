@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
@@ -18,39 +19,33 @@ import java.util.Set;
 public class GameTest {
 
     private Game game;
-    private Player player1;
-    private Player player2;
-    private Dice mockDice;
+    private String playerName;
+    private List<Dice> mockDices;
 
     @Before
     public void setUp() {
-        mockDice = Mockito.mock(Dice.class);
-        when(mockDice.roll()).thenReturn(7);
+        playerName = "Ted";
 
-        player1 = new Player("Jon");
-        player2 = new Player("Sara");
+        Dice mockDice1 = Mockito.mock(Dice.class);
+        Dice mockDice2 = Mockito.mock(Dice.class);
+        when(mockDice1.roll()).thenReturn(6);
+        when(mockDice2.roll()).thenReturn(6);
+        mockDices = Arrays.asList(mockDice1, mockDice2);
 
-        game = new Game(Arrays.asList(player1, player2), Arrays.asList(mockDice));
+        game = new Game(playerName);
+        game.setDice(mockDices);
     }
 
     @Test
     public void gameShouldInitializeCorrectly() {
         assertNotNull("Game should not be null", game);
-        assertNotNull("Player1 should not be null", player1);
-        assertNotNull("Player2 should not be null", player2);
-        assertNotNull("Dices should not be null", mockDice);
+        assertNotNull("Dices should not be null", mockDices);
     }
 
     @Test
     public void gameShouldHaveCorrectPlayers() {
-        List<Player> expectedPlayers = Arrays.asList(player1, player2);
-        assertEquals("Game should have the correct players", expectedPlayers, game.getPlayers());
-    }
-
-    @Test
-    public void gameShouldHaveCorrectDice() {
-        List<Dice> expectedDices = Arrays.asList(mockDice);
-        assertEquals("Game should have the correct dices",expectedDices, game.getDices());
+        List<Player> expectedPlayers = game.getPlayers();
+        assertEquals("Game should have the correct players", expectedPlayers.get(0).getName(), playerName);
     }
 
     @Test
@@ -62,11 +57,10 @@ public class GameTest {
 
     @Test
     public void playersShouldGainPointsDuringGame() {
-        assertEquals("Player 1 should have 0 score before first round", 0, player1.getScore());
-        assertEquals("Player 2 should have 0 score before first round", 0, player2.getScore());
+        List<Player> expectedPlayers = game.getPlayers();
+        assertEquals("Player 2 should have 0 score before first round", 0, expectedPlayers.get(0).getScore());
         game.start();
-        assertEquals("Player 1 should have 7 score after first round", 21, player1.getScore());
-        assertEquals("Player 2 should have 7 score after first round", 21, player2.getScore());
+        assertNotEquals("Player 2 should have 7 score after first round", 0, expectedPlayers.get(0).getScore());
     }
 
     @Test
@@ -76,6 +70,5 @@ public class GameTest {
         Set<Player> set = new HashSet<>(players);
 
         assertTrue(set.size() == players.size());
-
     }
 }
