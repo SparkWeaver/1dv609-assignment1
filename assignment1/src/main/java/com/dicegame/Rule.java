@@ -8,7 +8,9 @@ public class Rule {
     }
 
     public Decision makeDecision(int playerScore, int diceValue) {
-        if(playerScore + diceValue > scoreLimit - 10) {
+        if(playerScore + diceValue > scoreLimit) {
+            return Decision.BUST;
+        } else if (playerScore + diceValue > scoreLimit - 10) {
             return Decision.STAY;
         } else {
             return Decision.THROW_AGAIN;
