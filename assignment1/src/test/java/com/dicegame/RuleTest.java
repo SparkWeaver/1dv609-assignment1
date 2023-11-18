@@ -38,4 +38,8 @@ public class RuleTest {
         assertEquals(Rule.Decision.HOLD, rule.makeDecision(10, 9));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void makeDecisionShouldThrowExceptionPlayerScoreIsNegative() {
+        rule.makeDecision(-1, 2);
+    }
 }
