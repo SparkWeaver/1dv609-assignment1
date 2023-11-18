@@ -17,7 +17,7 @@ public class BotPlayer extends Player {
     public void throwDice(List<Dice> dices) {
         
         int diceSum = 0;
-        for(int i = 0; i < 1; i++) {
+        for(int i = 0; i < 3; i++) {
             diceSum = 0;
             for(Dice dice : dices) {
                 diceSum += dice.roll();
