@@ -17,6 +17,14 @@ public class ViewTest {
     public void setUp() {
         view = new View();
     }
+
+    @Test
+    public void promptForPlayerNameDoesNotReturnNull() {
+        String expected = "Jon";
+        Scanner mockScanner = Mockito.mock(Scanner.class);
+        when(mockScanner.nextLine()).thenReturn(null, expected);
+        view.setScanner(mockScanner);
+    }
     
     @Test
     public void promptForPlayerNameDoesNotReturnEmptyNameString() {
