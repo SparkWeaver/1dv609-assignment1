@@ -75,7 +75,7 @@ public class GameTest {
         List<Player> players = game.getPlayers();
         Set<Player> set = new HashSet<>(players);
 
-        assertTrue(String.format("Got %d", set.size()),set.size() == players.size());
+        assertTrue(set.size() == players.size());
 
     }
 }
