@@ -2,6 +2,9 @@ package com.dicegame;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,4 +37,5 @@ public class RuleTest {
     public void testHoldDecision() {
         assertEquals(Rule.Decision.HOLD, rule.makeDecision(10, 9));
     }
+
 }
