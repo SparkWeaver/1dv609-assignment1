@@ -71,4 +71,14 @@ public class GameTest {
 
         assertTrue(set.size() == players.size());
     }
+
+    @Test
+    public void testPlayerTypes() {
+        List<Player> players = game.getPlayers();
+        assertTrue(players.get(0) instanceof HumanPlayer);
+
+        for(int i = 1; i < players.size(); i++) {
+            assertTrue(players.get(i) instanceof BotPlayer);
+        }
+    }
 }
