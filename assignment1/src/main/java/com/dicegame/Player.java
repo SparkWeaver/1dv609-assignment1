@@ -10,6 +10,7 @@ public class Player {
         NON_ACTIVE
     }
     
+    protected Rule rule;
     protected State state;
     private final String name;
     protected int score;
@@ -19,6 +20,7 @@ public class Player {
             throw new IllegalArgumentException("Name cannot be null or empty");
         }
 
+        rule = new Rule();
         this.name = name;
         state = State.ACTIVE;
         score = 0;

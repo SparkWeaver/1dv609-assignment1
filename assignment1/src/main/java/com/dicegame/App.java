@@ -2,7 +2,7 @@ package com.dicegame;
 
 public class App {
 
-    private View view = new View();
+    private View view;
     private Game game;
 
     public static void main(String[] args) {
@@ -11,10 +11,13 @@ public class App {
     }
 
     public void initGame() {
+        Rule rule = new Rule();
+
+        view = new View(rule);
         view.printTitleAndInstructions();
         String name = view.promptForPlayerName();
 
-        game = new Game(name);
+        game = new Game(name, rule);
     }
 
     /** All methods below would be deleted before deployment, so to not having a back door TODO */

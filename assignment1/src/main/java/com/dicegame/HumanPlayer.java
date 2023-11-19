@@ -4,10 +4,13 @@ import java.util.List;
 
 import com.dicegame.Rule.Decision;
 
-public class BotPlayer extends Player {
+public class HumanPlayer extends Player {
 
-    public BotPlayer(String name) {
+    private View view;
+
+    public HumanPlayer(String name, View view) {
         super(name);
+        this.view = view;
     }
 
     @Override
@@ -19,7 +22,8 @@ public class BotPlayer extends Player {
             for(Dice dice : dices) {
                 diceSum += dice.roll();
             } 
-            Decision decision = rule.makeDecision(score, diceSum);
+            
+            Decision decision = view.promptForPlayerDecision(score, diceSum);
 
             if(decision == Decision.BUST || decision == Decision.HOLD) {
                 state = State.NON_ACTIVE;
