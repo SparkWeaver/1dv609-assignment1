@@ -28,6 +28,7 @@ public class HumanPlayerTest {
 
         mockScanner = Mockito.mock(Scanner.class);
         view = new View();
+        view.setScanner(mockScanner);
         
         humanPlayer = new HumanPlayer(name, view);
 
@@ -42,12 +43,58 @@ public class HumanPlayerTest {
         when(mockScanner.nextInt()).thenReturn(1);
         when(mockDice1.roll()).thenReturn(1,2,3,4);
         when(mockDice2.roll()).thenReturn(1,2,3,4);
-        view.setScanner(mockScanner);
 
         humanPlayer.throwDice(mockedDices);
 
         assertEquals(Player.State.ACTIVE, humanPlayer.getState());
         assertEquals(6, humanPlayer.getScore());
+    }
+
+    @Test
+    public void testHumanDecisionToStay() {
+        when(mockScanner.nextInt()).thenReturn(2, 2);
+        when(mockDice1.roll()).thenReturn(1);
+        when(mockDice2.roll()).thenReturn(1);
+
+        humanPlayer.throwDice(mockedDices);
+
+        when(mockDice1.roll()).thenReturn(5, 6, 7);
+        when(mockDice2.roll()).thenReturn(5, 6, 7);
+
+        humanPlayer.throwDice(mockedDices);
+
+        assertEquals(Player.State.ACTIVE, humanPlayer.getState());
+        assertEquals(12, humanPlayer.getScore());
+    }
+
+    @Test
+    public void testHumanDecisionToHold() {
+        when(mockScanner.nextInt()).thenReturn(2, 3);
+        when(mockDice1.roll()).thenReturn(5);
+        when(mockDice2.roll()).thenReturn(5);
+
+        humanPlayer.throwDice(mockedDices);
+
+        when(mockDice1.roll()).thenReturn(5, 6, 7);
+        when(mockDice2.roll()).thenReturn(5, 6, 7);
+
+        humanPlayer.throwDice(mockedDices);
+
+        assertEquals(Player.State.NON_ACTIVE, humanPlayer.getState());
+        assertEquals(20, humanPlayer.getScore());
+    }
+
+    @Test
+    public void testHumanDecisionToBust() {
+        when(mockScanner.nextInt()).thenReturn(2, 4);
+        when(mockDice1.roll()).thenReturn(6);
+        when(mockDice2.roll()).thenReturn(6);
+
+        humanPlayer.throwDice(mockedDices);
+        humanPlayer.throwDice(mockedDices);
+
+        assertEquals(Player.State.NON_ACTIVE, humanPlayer.getState());
+        assertEquals(24, humanPlayer.getScore());
     }
 
 }
