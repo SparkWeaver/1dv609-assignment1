@@ -1,11 +1,18 @@
 package com.dicegame;
 
-public class Rule {
-    private final int scoreLimit;
+import java.util.List;
 
-    public Rule() {
-        scoreLimit = 21;
+public class Rule {
+
+    public enum Decision {
+        THROW_AGAIN,
+        STAY,
+        HOLD,
+        BUST,
+        END
     }
+
+    private static int scoreLimit = 21;
 
     public Decision makeDecision(int playerScore, int diceValue) {
         if (playerScore < 0 || diceValue < 0) {
@@ -24,11 +31,16 @@ public class Rule {
         }
     }
 
-    public enum Decision {
-        THROW_AGAIN,
-        STAY,
-        HOLD,
-        BUST,
-        END
+    public static Player determineTheWinner(List<Player> players) {
+        Player winner = players.get(0);
+        for (int i = 1; i < players.size(); i++) {
+            Player currentPlayer = players.get(i);
+
+            if (currentPlayer.getScore() <= scoreLimit && 
+                (scoreLimit - currentPlayer.getScore() < scoreLimit - winner.getScore() || winner.getScore() > scoreLimit)) {
+                winner = currentPlayer;
+            }
+        }
+        return winner;
     }
 }

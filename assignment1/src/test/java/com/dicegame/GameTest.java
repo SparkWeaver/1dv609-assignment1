@@ -175,7 +175,7 @@ public class GameTest {
         List<Player> players = Arrays.asList(mockP1, mockP2, mockP3, mockP4);
         game.setPlayers(players);
 
-        assertEquals("Emma", game.determineTheWinner());
+        assertEquals("Emma", game.determineTheWinner().getName());
     }
 
     private String createPlayerOutput() {

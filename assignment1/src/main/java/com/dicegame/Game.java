@@ -60,6 +60,7 @@ public class Game {
                 isGameOver = true;
             }
         }
+        Player winner = determineTheWinner();
     }
 
     private boolean allPlayersAreDone() {
@@ -69,6 +70,10 @@ public class Game {
             }
         }
         return true;
+    }
+
+    public Player determineTheWinner() {
+        return Rule.determineTheWinner(players);
     }
 
     /** Below should be removed later on */
