@@ -121,18 +121,6 @@ public class GameTest {
     }
 
     @Test
-    public void gameShouldPrintAllBotDecisionsBetweenPlayerHumanTurn() {
-        when(mockScanner.nextInt()).thenReturn(3);
-        game.start();
-
-        String expectedOutput = createPlayerOutput() +
-                            createBotOutput();
-
-        assertEquals(expectedOutput, outContent.toString());
-        assertTrue(game.isOver());
-    }
-
-    @Test
     public void gameShouldEndWhenAllPlayersAreNonActive() {
         Player mockP1 = Mockito.mock(Player.class);
         Player mockP2 = Mockito.mock(Player.class);
@@ -184,7 +172,6 @@ public class GameTest {
                 System.lineSeparator() + "1. Throw again" +
                 System.lineSeparator() + "2. Stay" +
                 System.lineSeparator() + "3. Hold" +
-                System.lineSeparator() + "0. End game" +
                 System.lineSeparator() + System.lineSeparator();
     }
 

@@ -14,14 +14,14 @@ public class App {
         view.printTitleAndInstructions();
         String name = view.promptForPlayerName();
         game = new Game(name, view);
-        startGame(); //TODO
+        startGame();
     }
 
     public void startGame() {
         game.start();
     }
 
-    /** All methods below would be deleted before deployment, so to not having a back door TODO */
+    /** All methods below would be deleted before deployment, so to not having a back door */
     public Game getGame() {
         return game;
     }

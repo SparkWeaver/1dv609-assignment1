@@ -17,13 +17,14 @@ public class HumanPlayer extends Player {
     public void rollDice(List<Dice> dices) {
         
         int diceSum = 0;
+        Decision decision = Decision.END;
+        
         for(int i = 0; i < 3; i++) {
             diceSum = 0;
             for(Dice dice : dices) {
                 diceSum += dice.roll();
             } 
             
-            Decision decision;
             if (i == 2) {
                 if(score + diceSum > 21) {
                     decision = view.promptForPlayerBustDecision(score, diceSum);
@@ -38,12 +39,18 @@ public class HumanPlayer extends Player {
                 }
             } else {
                 decision = view.promptForPlayerDecision(score, diceSum);
+                if (decision == Decision.END) {
+                    System.exit(0);
+                }
                 if(decision == Decision.HOLD) {
                     state = State.NON_ACTIVE;
                     break;
                 } else if (decision == Decision.STAY) {
                     break;
                 }
+            }
+            if (decision == Decision.END) {
+                System.exit(0);
             }
         }
         score += diceSum;

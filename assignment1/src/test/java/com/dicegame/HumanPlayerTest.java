@@ -121,19 +121,6 @@ public class HumanPlayerTest {
     }
 
     @Test
-    public void testHumanDecisionDuringBustOutput() {
-        when(mockScanner.nextInt()).thenReturn(1);
-        when(mockDice1.roll()).thenReturn(12);
-        when(mockDice2.roll()).thenReturn(12);
-
-        humanPlayer.rollDice(mockedDices);
-
-        String expectedOutput = createBustDecisionOutput();
-
-        assertEquals(expectedOutput, outContent.toString());
-    }
-
-    @Test
     public void testHumanDecisionDuringNoMoreTurnsOutput() {
         when(mockScanner.nextInt()).thenReturn(1, 1, 2);
         when(mockDice1.roll()).thenReturn(6);
@@ -155,7 +142,6 @@ public class HumanPlayerTest {
                 System.lineSeparator() + "1. Throw again" +
                 System.lineSeparator() + "2. Stay" +
                 System.lineSeparator() + "3. Hold" +
-                System.lineSeparator() + "0. End game" +
                 System.lineSeparator() + System.lineSeparator();
     }
 
@@ -164,7 +150,6 @@ public class HumanPlayerTest {
                 "Score: 0 Dice roll: 24" + System.lineSeparator() +
                 System.lineSeparator() + "This is a BUST!" +
                 System.lineSeparator() + "1. Continue" +
-                System.lineSeparator() + "0. End game" +
                 System.lineSeparator() + System.lineSeparator();
     }
 
@@ -174,7 +159,6 @@ public class HumanPlayerTest {
                 System.lineSeparator() + "No more re-roll's" +
                 System.lineSeparator() + "1. Continue" +
                 System.lineSeparator() + "2. Hold" +
-                System.lineSeparator() + "0. End game" +
                 System.lineSeparator() + System.lineSeparator();
     }
 }

@@ -37,7 +37,6 @@ public class View {
         System.out.println("1. Throw again");
         System.out.println("2. Stay");
         System.out.println("3. Hold");
-        System.out.println("0. End game");
         System.out.println("");
 
         switch (scanner.nextInt()) {
@@ -58,7 +57,6 @@ public class View {
         System.out.println("");
         System.out.println("This is a BUST!");
         System.out.println("1. Continue");
-        System.out.println("0. End game");
         System.out.println("");
 
         switch (scanner.nextInt()) {
@@ -76,7 +74,6 @@ public class View {
         System.out.println("No more re-roll's");
         System.out.println("1. Continue");
         System.out.println("2. Hold");
-        System.out.println("0. End game");
         System.out.println("");
 
         switch (scanner.nextInt()) {
@@ -101,11 +98,11 @@ public class View {
 	}
 
     public void printWinner(Player player) {
-        String output = String.format("The winner is %s, with a score of %d", player.getName(), player.getScore());
+        String output = String.format("\nThe winner is %s, with a score of %d", player.getName(), player.getScore());
         System.out.println(output);
     }
 
-    /** Methods below should be removed when done TODO */
+    /** Methods below should be removed when done */
     public void setScanner(Scanner scanner) {
         this.scanner = scanner;
     }

@@ -59,8 +59,10 @@ public class Game {
                 isGameActive = false;
                 isGameOver = true;
             }
+    
         }
         Player winner = determineTheWinner();
+        view.printWinner(winner);
     }
 
     private boolean allPlayersAreDone() {
