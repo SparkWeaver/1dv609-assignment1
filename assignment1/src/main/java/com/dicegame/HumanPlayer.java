@@ -30,7 +30,11 @@ public class HumanPlayer extends Player {
                     state = State.NON_ACTIVE;
                     break;
                 } else {
-                    
+                    decision = view.promptForPlayerNoMoreTurnsDecision(score, diceSum);
+                    if(decision == Decision.HOLD) {
+                        state = State.NON_ACTIVE;
+                        break;
+                    }
                 }
             } else {
                 decision = view.promptForPlayerDecision(score, diceSum);
