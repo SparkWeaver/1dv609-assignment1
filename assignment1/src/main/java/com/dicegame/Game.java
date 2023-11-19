@@ -16,9 +16,8 @@ public class Game {
     private List<Dice> dices;
     private boolean isGameActive;
     private boolean isGameOver;
-    private Rule rule;
 
-    public Game(String name, Rule rule) {
+    public Game(String name) {
         players = new LinkedList<Player>();
         dices = new LinkedList<Dice>();
 
