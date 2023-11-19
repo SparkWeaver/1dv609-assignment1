@@ -9,13 +9,13 @@ public class View {
     private Scanner scanner = new Scanner(System.in);
 
     public String promptForPlayerName() {
-        
+
         String name;
-        while(true) {
+        while (true) {
             System.out.print("Enter your name: ");
             name = scanner.nextLine();
 
-            if(name != null && !name.trim().isEmpty() && name.trim().length() < 30) {
+            if (name != null && !name.trim().isEmpty() && name.trim().length() < 30) {
                 return name;
             }
         }
@@ -29,7 +29,7 @@ public class View {
     }
 
     public Decision promptForPlayerDecision(int score, int diceSum) {
-        
+
         System.out.println("");
         System.out.println("Score: " + score + " Dice roll: " + diceSum);
         System.out.println("");
@@ -67,9 +67,30 @@ public class View {
                 return Rule.Decision.END;
         }
     }
-    
+
+    public Decision promptForPlayerNoMoreTurnsDecision(int score, int diceSum) {
+        System.out.println("");
+        System.out.println("Score: " + score + " Dice roll: " + diceSum);
+        System.out.println("");
+        System.out.println("No more re-roll's");
+        System.out.println("1. Continue");
+        System.out.println("2. Hold");
+        System.out.println("0. End game");
+        System.out.println("");
+
+        switch (scanner.nextInt()) {
+            case 1:
+                return Rule.Decision.STAY;
+            case 2:
+                return Rule.Decision.HOLD;
+            default:
+                return Rule.Decision.END;
+        }
+    }
+
     /** Methods below should be removed when done TODO */
     public void setScanner(Scanner scanner) {
         this.scanner = scanner;
     }
+
 }

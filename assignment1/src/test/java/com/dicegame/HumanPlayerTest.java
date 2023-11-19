@@ -26,7 +26,6 @@ public class HumanPlayerTest {
     private List<Dice> mockedDices;
     private Scanner mockScanner;
 
-
     @Before
     public void setUp() {
         name = "TED";
@@ -35,7 +34,7 @@ public class HumanPlayerTest {
         mockScanner = Mockito.mock(Scanner.class);
         view = new View();
         view.setScanner(mockScanner);
-        
+
         humanPlayer = new HumanPlayer(name, view);
 
         mockDice1 = Mockito.mock(Dice.class);
@@ -48,7 +47,7 @@ public class HumanPlayerTest {
     public void restoreStreams() {
         System.setOut(originalOut);
     }
-    
+
     @Test
     public void testHumanDecisionToRollAgain() {
         when(mockScanner.nextInt()).thenReturn(1);
@@ -134,22 +133,48 @@ public class HumanPlayerTest {
         assertEquals(expectedOutput, outContent.toString());
     }
 
+    @Test
+    public void testHumanDecisionDuringNoMoreTurnsOutput() {
+        when(mockScanner.nextInt()).thenReturn(1, 1, 2);
+        when(mockDice1.roll()).thenReturn(6);
+        when(mockDice2.roll()).thenReturn(6);
+
+        humanPlayer.rollDice(mockedDices);
+
+        String expectedOutput = createDefaultDecisionOutput() +
+                            createDefaultDecisionOutput() +
+                            createNoMoreTurnsDecisionOutput();
+
+        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(Player.State.NON_ACTIVE, humanPlayer.getState());
+    }
+
     private String createDefaultDecisionOutput() {
         return System.lineSeparator() +
-        "Score: 0 Dice roll: 12" + System.lineSeparator() +
-        System.lineSeparator() + "1. Throw again" +
-        System.lineSeparator() + "2. Stay" + 
-        System.lineSeparator() + "3. Hold" + 
-        System.lineSeparator() + "0. End game" + 
-        System.lineSeparator() + System.lineSeparator();
+                "Score: 0 Dice roll: 12" + System.lineSeparator() +
+                System.lineSeparator() + "1. Throw again" +
+                System.lineSeparator() + "2. Stay" +
+                System.lineSeparator() + "3. Hold" +
+                System.lineSeparator() + "0. End game" +
+                System.lineSeparator() + System.lineSeparator();
     }
 
     private String createBustDecisionOutput() {
         return System.lineSeparator() +
-        "Score: 0 Dice roll: 24" + System.lineSeparator() +
-        System.lineSeparator() + "This is a BUST!" +
-        System.lineSeparator() + "1. Continue" +
-        System.lineSeparator() + "0. End game" + 
-        System.lineSeparator() + System.lineSeparator();
+                "Score: 0 Dice roll: 24" + System.lineSeparator() +
+                System.lineSeparator() + "This is a BUST!" +
+                System.lineSeparator() + "1. Continue" +
+                System.lineSeparator() + "0. End game" +
+                System.lineSeparator() + System.lineSeparator();
+    }
+
+    private String createNoMoreTurnsDecisionOutput() {
+        return System.lineSeparator() +
+                "Score: 0 Dice roll: 12" + System.lineSeparator() +
+                System.lineSeparator() + "No more re-roll's" +
+                System.lineSeparator() + "1. Continue" +
+                System.lineSeparator() + "2. Hold" +
+                System.lineSeparator() + "0. End game" +
+                System.lineSeparator() + System.lineSeparator();
     }
 }

@@ -24,10 +24,14 @@ public class HumanPlayer extends Player {
             } 
             
             Decision decision;
-            if(score + diceSum > 21) {
-                decision = view.promptForPlayerBustDecision(score, diceSum);
-                state = State.NON_ACTIVE;
-                break;
+            if (i == 2) {
+                if(score + diceSum > 21) {
+                    decision = view.promptForPlayerBustDecision(score, diceSum);
+                    state = State.NON_ACTIVE;
+                    break;
+                } else {
+                    
+                }
             } else {
                 decision = view.promptForPlayerDecision(score, diceSum);
                 if(decision == Decision.HOLD) {
