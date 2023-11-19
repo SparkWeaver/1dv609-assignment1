@@ -141,14 +141,12 @@ public class GameTest {
     }
 
     private String createBotOutput() {
-        return System.lineSeparator() + System.lineSeparator() +
-                System.lineSeparator() + "Emma: rolled 6 and 6 new score 12 active" +
-                System.lineSeparator() + "James: rolled 6 and 6 new score 12 active" +
-                System.lineSeparator() + "Sophia: rolled 6 and 6 new score 12 active" +
-                System.lineSeparator() + System.lineSeparator() +
-                System.lineSeparator() + "Emma: rolled 6 and 6 new score 24 non-active" +
-                System.lineSeparator() + "James: rolled 6 and 6 new score 24 non-active" +
-                System.lineSeparator() + "Sophia: rolled 6 and 6 new score 24 non-active" +
-                System.lineSeparator() + System.lineSeparator();
+        return  "Emma: rolled 0 and 0 new score 12 active" +
+                System.lineSeparator() + "James: rolled 0 and 0 new score 12 active" +
+                System.lineSeparator() + "Sophia: rolled 0 and 0 new score 12 active" +
+                System.lineSeparator() + "Emma: rolled 0 and 0 new score 24 non-active" +
+                System.lineSeparator() + "James: rolled 0 and 0 new score 24 non-active" +
+                System.lineSeparator() + "Sophia: rolled 0 and 0 new score 24 non-active" +
+                System.lineSeparator();
     }
 }

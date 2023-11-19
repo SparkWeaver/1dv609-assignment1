@@ -46,7 +46,13 @@ public class Game {
 
         while(isGameActive) {
             for(Player player : players) {
-                player.rollDice(dices);
+
+                if(player instanceof HumanPlayer && player.getState() == Player.State.ACTIVE) {
+                    player.rollDice(dices);
+                } else if (player.getState() == Player.State.ACTIVE) {
+                    player.rollDice(dices);
+                    view.printBotState(player, dices);
+                }
             }
             checkForWinner();
         }

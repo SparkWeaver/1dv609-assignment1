@@ -1,5 +1,6 @@
 package com.dicegame;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.dicegame.Rule.Decision;
@@ -87,6 +88,17 @@ public class View {
                 return Rule.Decision.END;
         }
     }
+
+    public void printBotState(Player player, List<Dice> dices) {
+
+        String output = String.format("%s: rolled %d and %d new score %d", player.getName(), dices.get(0).getValue(),dices.get(1).getValue(), player.getScore());
+        if (player.getState() == Player.State.ACTIVE) {
+            output += " active";
+        } else {
+            output += " non-active";
+        }
+        System.out.println(output);
+	}
 
     /** Methods below should be removed when done TODO */
     public void setScanner(Scanner scanner) {
