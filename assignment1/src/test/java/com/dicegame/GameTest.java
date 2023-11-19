@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.dicegame.Player.State;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -128,6 +130,29 @@ public class GameTest {
 
         assertEquals(expectedOutput, outContent.toString());
         assertTrue(game.isOver());
+    }
+
+    @Test
+    public void gameShouldEndWhenAllPlayersAreNonActive() {
+        Player mockP1 = Mockito.mock(Player.class);
+        Player mockP2 = Mockito.mock(Player.class);
+        Player mockP3 = Mockito.mock(Player.class);
+        Player mockP4 = Mockito.mock(Player.class);
+
+        when(mockP1.getState()).thenReturn(State.NON_ACTIVE);
+        when(mockP1.getScore()).thenReturn(24);
+        when(mockP2.getState()).thenReturn(State.ACTIVE);
+        when(mockP2.getScore()).thenReturn(13);
+        when(mockP3.getState()).thenReturn(State.ACTIVE);
+        when(mockP3.getScore()).thenReturn(18);
+        when(mockP4.getState()).thenReturn(State.ACTIVE);
+        when(mockP4.getScore()).thenReturn(19);
+
+        List<Player> players = Arrays.asList(mockP1, mockP2, mockP3, mockP4);
+        game.setPlayers(players);
+
+        game.start();
+        assertFalse(game.isOver());
     }
 
     private String createPlayerOutput() {

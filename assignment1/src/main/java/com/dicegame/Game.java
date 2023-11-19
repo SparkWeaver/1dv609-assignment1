@@ -89,4 +89,8 @@ public class Game {
     public void setDice(List<Dice> dices) {
         this.dices = dices;
     }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
 }
