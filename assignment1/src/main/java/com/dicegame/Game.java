@@ -32,7 +32,7 @@ public class Game {
             }
         }
 
-        for(int i = 0; i < 1; i++) {
+        for(int i = 0; i < 2; i++) {
             dices.add(new Dice());
         }
 
@@ -43,7 +43,7 @@ public class Game {
 
     public void start() {
         isGameActive = true;
-        
+
         while(isGameActive) {
             for(Player player : players) {
                 player.rollDice(dices);
