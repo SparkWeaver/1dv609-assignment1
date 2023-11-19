@@ -36,7 +36,7 @@ public class View {
         System.out.println("1. Throw again");
         System.out.println("2. Stay");
         System.out.println("3. Hold");
-        System.out.println("4. End");
+        System.out.println("0. End game");
         System.out.println("");
 
         switch (scanner.nextInt()) {

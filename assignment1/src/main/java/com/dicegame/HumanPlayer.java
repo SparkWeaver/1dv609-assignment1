@@ -23,13 +23,18 @@ public class HumanPlayer extends Player {
                 diceSum += dice.roll();
             } 
             
-            Decision decision = view.promptForPlayerDecision(score, diceSum);
+            if(score + diceSum > 100) {
 
-            if(decision == Decision.BUST || decision == Decision.HOLD) {
-                state = State.NON_ACTIVE;
-                break;
-            } else if (decision == Decision.STAY) {
-                break;
+            } else {
+                Decision decision = view.promptForPlayerDecision(score, diceSum);
+                if(decision == Decision.HOLD) {
+                    state = State.NON_ACTIVE;
+                    break;
+                } else if (decision == Decision.STAY) {
+                    break;
+                } else if (decision == Decision.BUST) {
+                    System.exit(0);
+                }
             }
         }
         score += diceSum;
