@@ -100,6 +100,11 @@ public class View {
         System.out.println(output);
 	}
 
+    public void printWinner(Player player) {
+        String output = String.format("The winner is %s, with a score of %d", player.getName(), player.getScore());
+        System.out.println(output);
+    }
+
     /** Methods below should be removed when done TODO */
     public void setScanner(Scanner scanner) {
         this.scanner = scanner;

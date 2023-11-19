@@ -81,8 +81,9 @@ public class ViewTest {
         when(winner.getName()).thenReturn("Emma");
         when(winner.getScore()).thenReturn(21);
 
-        String expectedOutput = "The winner is Emma, with a score of 21";
-        
+        String expectedOutput = "The winner is Emma, with a score of 21" + System.lineSeparator();
+        view.printWinner(winner);
+
         assertEquals(expectedOutput, outContent.toString());
     }
 }
