@@ -1,6 +1,7 @@
 package com.dicegame;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayOutputStream;
@@ -70,6 +71,17 @@ public class ViewTest {
         "[ title ]" + System.lineSeparator() + 
         "[ instructions ]" + System.lineSeparator() +
         System.lineSeparator();
+        
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    public void testPrintWinner() {
+        Player winner = Mockito.mock(Player.class);
+        when(winner.getName()).thenReturn("Emma");
+        when(winner.getScore()).thenReturn(21);
+
+        String expectedOutput = "The winner is Emma, with a score of 21";
         
         assertEquals(expectedOutput, outContent.toString());
     }
