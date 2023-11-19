@@ -28,6 +28,7 @@ public class Rule {
         THROW_AGAIN,
         STAY,
         HOLD,
-        BUST
+        BUST,
+        END
     }
 }

@@ -121,7 +121,7 @@ public class HumanPlayerTest {
         System.lineSeparator() + "This is a BUST!" +
         System.lineSeparator() + "1. Continue" +
         System.lineSeparator() + "0. End game" + 
-        System.lineSeparator();
+        System.lineSeparator() + System.lineSeparator();
 
         assertEquals(expectedOutput, outContent.toString());
     } 

@@ -50,6 +50,23 @@ public class View {
                 return Rule.Decision.BUST;
         }
     }
+
+    public Decision promptForPlayerBustDecision(int score, int diceSum) {
+        System.out.println("");
+        System.out.println("Score: " + score + " Dice roll: " + diceSum);
+        System.out.println("");
+        System.out.println("This is a BUST!");
+        System.out.println("1. Continue");
+        System.out.println("0. End game");
+        System.out.println("");
+
+        switch (scanner.nextInt()) {
+            case 1:
+                return Rule.Decision.BUST;
+            default:
+                return Rule.Decision.END;
+        }
+    }
     
     /** Methods below should be removed when done TODO */
     public void setScanner(Scanner scanner) {
