@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Rule.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assignment1</a> &gt; <a href="index.source.html" class="el_package">com.dicegame</a> &gt; <span class="el_source">Rule.java</span></div><h1>Rule.java</h1><pre class="source lang-java linenums">package com.dicegame;
+
+import java.util.List;
+
+<span class="fc" id="L5">public class Rule {</span>
+
+<span class="fc" id="L7">    public enum Decision {</span>
+<span class="fc" id="L8">        THROW_AGAIN,</span>
+<span class="fc" id="L9">        STAY,</span>
+<span class="fc" id="L10">        HOLD,</span>
+<span class="fc" id="L11">        BUST,</span>
+<span class="fc" id="L12">        END</span>
+    }
+
+<span class="fc" id="L15">    private static int scoreLimit = 21;</span>
+
+    public Decision makeDecision(int playerScore, int diceValue) {
+<span class="fc bfc" id="L18" title="All 4 branches covered.">        if (playerScore &lt; 0 || diceValue &lt; 0) {</span>
+<span class="fc" id="L19">            throw new IllegalArgumentException(&quot;Player score and dice value must be non-negative.&quot;);</span>
+        }
+
+<span class="fc" id="L22">        int newScore = playerScore + diceValue;</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if(newScore &gt; scoreLimit) {</span>
+<span class="fc" id="L24">            return Decision.BUST;</span>
+<span class="pc bpc" id="L25" title="1 of 4 branches missed.">        } else if (newScore &gt; scoreLimit - 3 &amp;&amp; newScore &lt;= scoreLimit) {</span>
+<span class="fc" id="L26">            return Decision.HOLD;</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        } else if (newScore &gt; scoreLimit - 10) {</span>
+<span class="fc" id="L28">            return Decision.STAY;</span>
+        } else {
+<span class="fc" id="L30">            return Decision.THROW_AGAIN;</span>
+        }
+    }
+
+    public static Player determineTheWinner(List&lt;Player&gt; players) {
+<span class="fc" id="L35">        Player winner = players.get(0);</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (int i = 1; i &lt; players.size(); i++) {</span>
+<span class="fc" id="L37">            Player currentPlayer = players.get(i);</span>
+
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if (currentPlayer.getScore() &lt;= scoreLimit &amp;&amp; </span>
+<span class="pc bpc" id="L40" title="1 of 4 branches missed.">                (scoreLimit - currentPlayer.getScore() &lt; scoreLimit - winner.getScore() || winner.getScore() &gt; scoreLimit)) {</span>
+<span class="fc" id="L41">                winner = currentPlayer;</span>
+            }
+        }
+<span class="fc" id="L44">        return winner;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

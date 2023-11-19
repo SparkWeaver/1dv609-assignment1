@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BotPlayer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assignment1</a> &gt; <a href="index.source.html" class="el_package">com.dicegame</a> &gt; <span class="el_source">BotPlayer.java</span></div><h1>BotPlayer.java</h1><pre class="source lang-java linenums">package com.dicegame;
+
+import java.util.List;
+
+import com.dicegame.Rule.Decision;
+
+public class BotPlayer extends Player {
+
+    public BotPlayer(String name) {
+<span class="fc" id="L10">        super(name);</span>
+<span class="fc" id="L11">    }</span>
+
+    @Override
+    public void rollDice(List&lt;Dice&gt; dices) {
+        
+<span class="fc" id="L16">        int diceSum = 0;</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        for(int i = 0; i &lt; 3; i++) {</span>
+<span class="fc" id="L18">            diceSum = 0;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">            for(Dice dice : dices) {</span>
+<span class="fc" id="L20">                diceSum += dice.roll();</span>
+<span class="fc" id="L21">            } </span>
+<span class="fc" id="L22">            Decision decision = rule.makeDecision(score, diceSum);</span>
+
+<span class="fc bfc" id="L24" title="All 4 branches covered.">            if(decision == Decision.BUST || decision == Decision.HOLD) {</span>
+<span class="fc" id="L25">                state = State.NON_ACTIVE;</span>
+<span class="fc" id="L26">                break;</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            } else if (decision == Decision.STAY) {</span>
+<span class="fc" id="L28">                break;</span>
+            }
+        }
+<span class="fc" id="L31">        score += diceSum;</span>
+<span class="fc" id="L32">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

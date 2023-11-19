@@ -5,31 +5,21 @@ import java.util.Random;
 public class Dice {
 
 <span class="fc" id="L7">    private Random random = new Random();</span>
-<span class="fc" id="L8">    private final int MIN_SIZE = 4;</span>
-<span class="fc" id="L9">    private final int MIN = 1;</span>
-    private final int max;
+<span class="fc" id="L8">    private final int MIN = 1;</span>
+<span class="fc" id="L9">    private final int MAX = 6;</span>
     private int value;
 
-    public Dice() {
-<span class="fc" id="L14">        this(6);</span>
-<span class="fc" id="L15">    }</span>
-
-<span class="fc" id="L17">    public Dice(int diceSize) {</span>
-<span class="fc bfc" id="L18" title="All 2 branches covered.">        if (diceSize &lt; MIN_SIZE) {</span>
-<span class="fc" id="L19">            throw new IllegalArgumentException(&quot;Dice size must be at least 4&quot;);</span>
-        }
-
-<span class="fc" id="L22">        max = diceSize;</span>
-<span class="fc" id="L23">        value = roll();</span>
-<span class="fc" id="L24">    }</span>
+<span class="fc" id="L12">    public Dice() {</span>
+<span class="fc" id="L13">        value = roll();</span>
+<span class="fc" id="L14">    }</span>
 
     public int getValue() {
-<span class="fc" id="L27">        return value;</span>
+<span class="fc" id="L17">        return value;</span>
     }
 
     public int roll() {
-<span class="fc" id="L31">        value = random.nextInt((max - MIN) + 1) + MIN;</span>
-<span class="fc" id="L32">        return getValue();</span>
+<span class="fc" id="L21">        value = random.nextInt((MAX - MIN) + 1) + MIN;</span>
+<span class="fc" id="L22">        return getValue();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

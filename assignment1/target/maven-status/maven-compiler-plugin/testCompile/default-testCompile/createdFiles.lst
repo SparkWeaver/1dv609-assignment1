@@ -1,0 +1,8 @@
+com\dicegame\ViewTest.class
+com\dicegame\AppTest.class
+com\dicegame\DiceTest.class
+com\dicegame\HumanPlayerTest.class
+com\dicegame\BotPlayerTest.class
+com\dicegame\PlayerTest.class
+com\dicegame\GameTest.class
+com\dicegame\RuleTest.class

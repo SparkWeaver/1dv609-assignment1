@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: com.dicegame.PlayerTest
+Test set: com.dicegame.HumanPlayerTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.dicegame.PlayerTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s -- in com.dicegame.HumanPlayerTest
