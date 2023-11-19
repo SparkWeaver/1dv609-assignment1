@@ -13,7 +13,7 @@ public class App {
     public void initGame() {
         view.printTitleAndInstructions();
         String name = view.promptForPlayerName();
-        game = new Game(name);
+        game = new Game(name, view);
     }
 
     public void startGame() {

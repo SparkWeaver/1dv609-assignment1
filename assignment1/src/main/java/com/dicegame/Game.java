@@ -16,16 +16,17 @@ public class Game {
     private List<Dice> dices;
     private boolean isGameActive;
     private boolean isGameOver;
+    private View view;
 
-    public Game(String name) {
+    public Game(String name, View view) {
         players = new LinkedList<Player>();
         dices = new LinkedList<Dice>();
 
-        players.add(new Player(name));
+        players.add(new HumanPlayer(name, view));
         for (PlayerName playerName : PlayerName.values()) {
-            Player newPlayer = new Player(playerName.name());
+            Player newPlayer = new BotPlayer(playerName.name());
             if(players.contains(newPlayer)) {
-                players.add(new Player(RESERVENAME));
+                players.add(new BotPlayer(RESERVENAME));
             } else {
                 players.add(newPlayer);
             }
@@ -35,6 +36,7 @@ public class Game {
             dices.add(new Dice());
         }
 
+        this.view = view;
         isGameActive = false;
         isGameOver = false;
     }

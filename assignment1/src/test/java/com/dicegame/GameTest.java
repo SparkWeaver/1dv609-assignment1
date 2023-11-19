@@ -21,18 +21,20 @@ public class GameTest {
     private Game game;
     private String playerName;
     private List<Dice> mockDices;
+    private View view;
 
     @Before
     public void setUp() {
         playerName = "Ted";
 
+        view = new View();
         Dice mockDice1 = Mockito.mock(Dice.class);
         Dice mockDice2 = Mockito.mock(Dice.class);
         when(mockDice1.roll()).thenReturn(6);
         when(mockDice2.roll()).thenReturn(6);
         mockDices = Arrays.asList(mockDice1, mockDice2);
 
-        game = new Game(playerName);
+        game = new Game(playerName, view);
         game.setDice(mockDices);
     }
 
@@ -65,7 +67,7 @@ public class GameTest {
 
     @Test
     public void DuplicatePlayerNamesShouldBePrevented() {
-        Game game = new Game("Emma");
+        Game game = new Game("Emma", view);
         List<Player> players = game.getPlayers();
         Set<Player> set = new HashSet<>(players);
 
@@ -74,6 +76,17 @@ public class GameTest {
 
     @Test
     public void testPlayerTypes() {
+        List<Player> players = game.getPlayers();
+        assertTrue(players.get(0) instanceof HumanPlayer);
+
+        for(int i = 1; i < players.size(); i++) {
+            assertTrue(players.get(i) instanceof BotPlayer);
+        }
+    }
+
+    @Test
+    public void testPlayerTypesWhenDuplicatName() {
+        Game game = new Game("Emma", view);
         List<Player> players = game.getPlayers();
         assertTrue(players.get(0) instanceof HumanPlayer);
 
