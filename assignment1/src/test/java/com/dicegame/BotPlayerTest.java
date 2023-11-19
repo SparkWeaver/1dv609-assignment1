@@ -35,7 +35,7 @@ public class BotPlayerTest {
         when(mockDice1.roll()).thenReturn(1,2,3,4);
         when(mockDice2.roll()).thenReturn(1,2,3,4);
 
-        botPlayer.throwDice(mockedDices);
+        botPlayer.rollDice(mockedDices);
 
         assertEquals(Player.State.ACTIVE, botPlayer.getState());
         assertEquals(6, botPlayer.getScore());
@@ -46,12 +46,12 @@ public class BotPlayerTest {
         when(mockDice1.roll()).thenReturn(1);
         when(mockDice2.roll()).thenReturn(1);
 
-        botPlayer.throwDice(mockedDices);
+        botPlayer.rollDice(mockedDices);
 
         when(mockDice1.roll()).thenReturn(5, 6, 7);
         when(mockDice2.roll()).thenReturn(5, 6, 7);
 
-        botPlayer.throwDice(mockedDices);
+        botPlayer.rollDice(mockedDices);
 
         assertEquals(Player.State.ACTIVE, botPlayer.getState());
         assertEquals(12, botPlayer.getScore());
@@ -62,12 +62,12 @@ public class BotPlayerTest {
         when(mockDice1.roll()).thenReturn(5);
         when(mockDice2.roll()).thenReturn(5);
 
-        botPlayer.throwDice(mockedDices);
+        botPlayer.rollDice(mockedDices);
 
         when(mockDice1.roll()).thenReturn(5, 6, 7);
         when(mockDice2.roll()).thenReturn(5, 6, 7);
 
-        botPlayer.throwDice(mockedDices);
+        botPlayer.rollDice(mockedDices);
 
         assertEquals(Player.State.NON_ACTIVE, botPlayer.getState());
         assertEquals(20, botPlayer.getScore());
@@ -78,8 +78,8 @@ public class BotPlayerTest {
         when(mockDice1.roll()).thenReturn(6);
         when(mockDice2.roll()).thenReturn(6);
 
-        botPlayer.throwDice(mockedDices);
-        botPlayer.throwDice(mockedDices);
+        botPlayer.rollDice(mockedDices);
+        botPlayer.rollDice(mockedDices);
 
         assertEquals(Player.State.NON_ACTIVE, botPlayer.getState());
         assertEquals(24, botPlayer.getScore());

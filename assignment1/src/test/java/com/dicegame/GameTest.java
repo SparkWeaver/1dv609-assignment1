@@ -14,6 +14,7 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 public class GameTest {
@@ -22,12 +23,17 @@ public class GameTest {
     private String playerName;
     private List<Dice> mockDices;
     private View view;
+    private Scanner mockScanner;
 
     @Before
     public void setUp() {
         playerName = "Ted";
 
+        mockScanner = Mockito.mock(Scanner.class);
         view = new View();
+        when(mockScanner.nextInt()).thenReturn(3);
+        view.setScanner(mockScanner);
+
         Dice mockDice1 = Mockito.mock(Dice.class);
         Dice mockDice2 = Mockito.mock(Dice.class);
         when(mockDice1.roll()).thenReturn(6);
@@ -93,5 +99,11 @@ public class GameTest {
         for(int i = 1; i < players.size(); i++) {
             assertTrue(players.get(i) instanceof BotPlayer);
         }
+    }
+
+    @Test
+    public void gameShouldHaveTwoDices() {
+        Game game = new Game("Emma", view);
+        assertEquals(2, game.getDices().size());
     }
 }

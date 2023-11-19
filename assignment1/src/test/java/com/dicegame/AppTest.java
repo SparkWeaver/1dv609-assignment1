@@ -38,6 +38,6 @@ public class AppTest {
         Game game = app.getGame();
 
         assertTrue("Game should include player with name from View",
-            game.getPlayers().contains(new Player("Jon")));
+            game.getPlayers().contains(new HumanPlayer("Jon", mockView)));
     }
 }

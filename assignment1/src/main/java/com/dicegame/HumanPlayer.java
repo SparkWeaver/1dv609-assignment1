@@ -14,7 +14,7 @@ public class HumanPlayer extends Player {
     }
 
     @Override
-    public void throwDice(List<Dice> dices) {
+    public void rollDice(List<Dice> dices) {
         
         int diceSum = 0;
         for(int i = 0; i < 3; i++) {

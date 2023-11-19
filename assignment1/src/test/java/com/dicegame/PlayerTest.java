@@ -42,14 +42,14 @@ public class PlayerTest {
 
         List<Dice> mockedDices = Arrays.asList(mockDice1, mockDice2);
 
-        player.throwDice(mockedDices);
+        player.rollDice(mockedDices);
         assertEquals(14, player.getScore());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void throwDiceShouldThrowExceptionForEmptyDiceArray() {
         List<Dice> emptyDices = Arrays.asList( new Dice[0] );
-        player.throwDice(emptyDices);
+        player.rollDice(emptyDices);
     }
 
     @Test(expected = IllegalArgumentException.class)

@@ -44,7 +44,7 @@ public class HumanPlayerTest {
         when(mockDice1.roll()).thenReturn(1,2,3,4);
         when(mockDice2.roll()).thenReturn(1,2,3,4);
 
-        humanPlayer.throwDice(mockedDices);
+        humanPlayer.rollDice(mockedDices);
 
         assertEquals(Player.State.ACTIVE, humanPlayer.getState());
         assertEquals(6, humanPlayer.getScore());
@@ -56,12 +56,12 @@ public class HumanPlayerTest {
         when(mockDice1.roll()).thenReturn(1);
         when(mockDice2.roll()).thenReturn(1);
 
-        humanPlayer.throwDice(mockedDices);
+        humanPlayer.rollDice(mockedDices);
 
         when(mockDice1.roll()).thenReturn(5, 6, 7);
         when(mockDice2.roll()).thenReturn(5, 6, 7);
 
-        humanPlayer.throwDice(mockedDices);
+        humanPlayer.rollDice(mockedDices);
 
         assertEquals(Player.State.ACTIVE, humanPlayer.getState());
         assertEquals(12, humanPlayer.getScore());
@@ -73,12 +73,12 @@ public class HumanPlayerTest {
         when(mockDice1.roll()).thenReturn(5);
         when(mockDice2.roll()).thenReturn(5);
 
-        humanPlayer.throwDice(mockedDices);
+        humanPlayer.rollDice(mockedDices);
 
         when(mockDice1.roll()).thenReturn(5, 6, 7);
         when(mockDice2.roll()).thenReturn(5, 6, 7);
 
-        humanPlayer.throwDice(mockedDices);
+        humanPlayer.rollDice(mockedDices);
 
         assertEquals(Player.State.NON_ACTIVE, humanPlayer.getState());
         assertEquals(20, humanPlayer.getScore());
@@ -90,8 +90,8 @@ public class HumanPlayerTest {
         when(mockDice1.roll()).thenReturn(6);
         when(mockDice2.roll()).thenReturn(6);
 
-        humanPlayer.throwDice(mockedDices);
-        humanPlayer.throwDice(mockedDices);
+        humanPlayer.rollDice(mockedDices);
+        humanPlayer.rollDice(mockedDices);
 
         assertEquals(Player.State.NON_ACTIVE, humanPlayer.getState());
         assertEquals(24, humanPlayer.getScore());

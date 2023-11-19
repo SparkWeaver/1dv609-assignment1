@@ -14,6 +14,7 @@ public class App {
         view.printTitleAndInstructions();
         String name = view.promptForPlayerName();
         game = new Game(name, view);
+        startGame(); //TODO
     }
 
     public void startGame() {

@@ -43,10 +43,10 @@ public class Game {
 
     public void start() {
         isGameActive = true;
-
+        
         while(isGameActive) {
             for(Player player : players) {
-                player.throwDice(dices);
+                player.rollDice(dices);
             }
             checkForWinner();
         }
@@ -59,6 +59,7 @@ public class Game {
                 isGameOver = true;
             }
         }
+
     }
 
     /** Below should be removed later on */

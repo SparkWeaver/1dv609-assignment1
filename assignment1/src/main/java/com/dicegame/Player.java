@@ -38,7 +38,7 @@ public class Player {
         return state;
     }
 
-    public void throwDice(List<Dice> dices) {
+    public void rollDice(List<Dice> dices) {
         if (dices == null || dices.size() == 0) {
             throw new IllegalArgumentException("Dice array cannot be empty");
         }
