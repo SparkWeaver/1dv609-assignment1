@@ -3,6 +3,8 @@ package com.dicegame;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.dicegame.Player.State;
+
 public class Game {
 
     private enum PlayerName {
@@ -43,7 +45,6 @@ public class Game {
 
     public void start() {
         isGameActive = true;
-
         while(isGameActive) {
             for(Player player : players) {
 
@@ -54,18 +55,20 @@ public class Game {
                     view.printBotState(player, dices);
                 }
             }
-            checkForWinner();
-        }
-    }
-
-    private void checkForWinner() {
-        for(Player player : players) {
-            if(player.getScore() >= 21) {
+            if(allPlayersAreDone()) {
                 isGameActive = false;
                 isGameOver = true;
             }
         }
+    }
 
+    private boolean allPlayersAreDone() {
+        for(Player player : players) {
+            if(player.getState() != State.NON_ACTIVE) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /** Below should be removed later on */
