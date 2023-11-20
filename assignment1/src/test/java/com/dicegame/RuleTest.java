@@ -76,4 +76,9 @@ public class RuleTest {
     public void constructorShouldThrowExceptionWhenProvidedScoreLimitLessThanTwo() {
         new Rule(1);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void isGameOverShouldThrowExceptionIfPlayerListIsEmpty () {
+        rule.isGameOver(Arrays.asList());
+    }
 }
