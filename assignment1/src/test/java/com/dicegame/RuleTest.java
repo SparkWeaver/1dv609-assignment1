@@ -1,9 +1,14 @@
 package com.dicegame;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class RuleTest {
 
@@ -39,6 +44,16 @@ public class RuleTest {
     @Test
     public void testBustDecision() {
         assertEquals(Rule.Decision.BUST, rule.decideAction(10, 12));
+    }
+
+    @Test
+    public void isGameOverShouldReturnTrueIfAllPlayersAreNonActive(){
+        Player player1 = Mockito.mock(Player.class);
+        Player player2 = Mockito.mock(Player.class);
+        when(player1.getState()).thenReturn(Player.State.NON_ACTIVE);
+        when(player2.getState()).thenReturn(Player.State.NON_ACTIVE);
+
+        assertTrue(rule.isGameOver(Arrays.asList(player1, player2)));
     }
 
     @Test(expected = IllegalArgumentException.class)
