@@ -22,8 +22,8 @@ public class RuleTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void constructorShouldThrowExceptionWhenProvidedNegativeScoreLimit() {
-        new Rule(-10);
+    public void constructorShouldThrowExceptionWhenProvidedScoreLimitLessThanOne() {
+        new Rule(1);
     }
 
     @Test
