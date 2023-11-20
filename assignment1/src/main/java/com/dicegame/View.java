@@ -39,7 +39,7 @@ public class View {
         }
     }
 
-    
+
     public Action promptForPlayerDefaultAction(int score, int diceSum) {
 
         System.out.println("");
@@ -109,7 +109,12 @@ public class View {
 	}
 
     public void printWinner(Player player) {
-        String output = String.format("\nThe winner is %s, with a score of %d", player.getName(), player.getScore());
+        String output;
+        if(player != null) {
+            output = String.format("\nThe winner is %s, with a score of %d", player.getName(), player.getScore());
+        } else {
+            output = "\nThe where no winner's this game.";
+        }
         System.out.println(output);
     }
 
