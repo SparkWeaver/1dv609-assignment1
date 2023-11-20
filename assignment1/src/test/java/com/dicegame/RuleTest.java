@@ -87,6 +87,7 @@ public class RuleTest {
         rule.isGameOver(null);
     }
 
+    //Comment, why !
     @Test(expected = IllegalArgumentException.class)
     public void determineWinnerThrowExceptionIfPlayerListIsEmpty () {
         rule.determineWinner(Arrays.asList());
