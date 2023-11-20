@@ -54,8 +54,8 @@ public class Rule {
         }
 
 <span class="fc bfc" id="L56" title="All 2 branches covered.">        for(Player player : players) {</span>
-<span class="pc bpc" id="L57" title="1 of 2 branches missed.">            if(player.getState() != State.NON_ACTIVE) {</span>
-<span class="nc" id="L58">                return false;</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">            if(player.getState() != State.NON_ACTIVE) {</span>
+<span class="fc" id="L58">                return false;</span>
             }
 <span class="fc" id="L60">        }</span>
 <span class="fc" id="L61">        return true;</span>
@@ -63,20 +63,21 @@ public class Rule {
 
     // Determine the winner
     public Player determineWinner(List&lt;Player&gt; players) {
-<span class="pc bpc" id="L66" title="1 of 4 branches missed.">        if (players == null || players.isEmpty()) {</span>
+<span class="fc bfc" id="L66" title="All 4 branches covered.">        if (players == null || players.isEmpty()) {</span>
 <span class="fc" id="L67">            throw new IllegalArgumentException(&quot;Player list can not be empty  or null.&quot;);</span>
         }
 
-<span class="nc" id="L70">        Player winner = players.get(0);</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">        for (int i = 1; i &lt; players.size(); i++) {</span>
-<span class="nc" id="L72">            Player currentPlayer = players.get(i);</span>
-
-<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (currentPlayer.getScore() &lt;= scoreLimit &amp;&amp; </span>
-<span class="nc bnc" id="L75" title="All 4 branches missed.">                (scoreLimit - currentPlayer.getScore() &lt; scoreLimit - winner.getScore() || winner.getScore() &gt; scoreLimit)) {</span>
-<span class="nc" id="L76">                winner = currentPlayer;</span>
+<span class="fc" id="L70">        Player winner = null;</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        for (Player currentPlayer : players) {</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            if (currentPlayer.getScore() &lt;= scoreLimit) {</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">                if (winner == null || </span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">                    (scoreLimit - currentPlayer.getScore() &lt; scoreLimit - winner.getScore())) {</span>
+<span class="fc" id="L75">                    winner = currentPlayer;</span>
+                }
             }
-        }
-<span class="nc" id="L79">        return winner;</span>
+<span class="fc" id="L78">        }</span>
+
+<span class="fc" id="L80">        return winner;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

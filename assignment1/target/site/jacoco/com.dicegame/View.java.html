@@ -60,16 +60,16 @@ public class View {
     }
 
     public Action promptForPlayerBustAction(int score, int diceSum) {
-<span class="nc" id="L63">        System.out.println(&quot;&quot;);</span>
-<span class="nc" id="L64">        System.out.println(&quot;Score: &quot; + score + &quot; Dice roll: &quot; + diceSum);</span>
-<span class="nc" id="L65">        System.out.println(&quot;&quot;);</span>
-<span class="nc" id="L66">        System.out.println(&quot;This is a BUST!&quot;);</span>
-<span class="nc" id="L67">        System.out.println(&quot;1. Continue&quot;);</span>
-<span class="nc" id="L68">        System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L63">        System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L64">        System.out.println(&quot;Score: &quot; + score + &quot; Dice roll: &quot; + diceSum);</span>
+<span class="fc" id="L65">        System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L66">        System.out.println(&quot;This is a BUST!&quot;);</span>
+<span class="fc" id="L67">        System.out.println(&quot;1. Continue&quot;);</span>
+<span class="fc" id="L68">        System.out.println(&quot;&quot;);</span>
 
-<span class="nc bnc" id="L70" title="All 2 branches missed.">        switch (scanner.nextInt()) {</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        switch (scanner.nextInt()) {</span>
             case 1:
-<span class="nc" id="L72">                return Rule.Action.BUST;</span>
+<span class="fc" id="L72">                return Rule.Action.BUST;</span>
             default:
 <span class="nc" id="L74">                return Rule.Action.BUST;</span>
         }

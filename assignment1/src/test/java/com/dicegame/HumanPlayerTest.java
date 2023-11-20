@@ -95,7 +95,7 @@ public class HumanPlayerTest {
 
     @Test
     public void testHumanDecisionToBust() {
-        when(mockScanner.nextInt()).thenReturn(2, 3);
+        when(mockScanner.nextInt()).thenReturn(1, 1, 1);
         when(mockDice1.roll()).thenReturn(6);
         when(mockDice2.roll()).thenReturn(6);
 

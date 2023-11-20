@@ -13,6 +13,7 @@ public class View {
         this.scanner = scanner;
     }
 
+    // Print the important information to the player
     public void printTitleAndInstructions() {
         System.out.println("");
         System.out.println("Welcome to Dice Blackjack!");
@@ -25,6 +26,7 @@ public class View {
         System.out.println("");
     }
 
+    // Prompt the player for there name
     public String promptForPlayerName() {
         String name;
         while (true) {
@@ -37,6 +39,7 @@ public class View {
         }
     }
 
+    
     public Action promptForPlayerDefaultAction(int score, int diceSum) {
 
         System.out.println("");

@@ -26,10 +26,10 @@ public class HumanPlayer extends Player {
 <span class="fc" id="L26">            } </span>
             
 <span class="fc bfc" id="L28" title="All 2 branches covered.">            if (i == 2) {</span>
-<span class="pc bpc" id="L29" title="1 of 2 branches missed.">                if(score + diceSum &gt; 21) {</span>
-<span class="nc" id="L30">                    decision = view.promptForPlayerBustAction(score, diceSum);</span>
-<span class="nc" id="L31">                    state = State.NON_ACTIVE;</span>
-<span class="nc" id="L32">                    break;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">                if(score + diceSum &gt; 21) {</span>
+<span class="fc" id="L30">                    decision = view.promptForPlayerBustAction(score, diceSum);</span>
+<span class="fc" id="L31">                    state = State.NON_ACTIVE;</span>
+<span class="fc" id="L32">                    break;</span>
                 } else {
 <span class="fc" id="L34">                    decision = view.promptForPlayerNoMoreTurnsAction(score, diceSum);</span>
 <span class="fc bfc" id="L35" title="All 2 branches covered.">                    if(decision == Action.HOLD) {</span>
