@@ -50,6 +50,7 @@ public class RuleTest {
     public void isGameOverShouldReturnTrueIfAllPlayersAreNonActive(){
         Player player1 = Mockito.mock(Player.class);
         Player player2 = Mockito.mock(Player.class);
+
         when(player1.getState()).thenReturn(Player.State.NON_ACTIVE);
         when(player2.getState()).thenReturn(Player.State.NON_ACTIVE);
 
@@ -57,13 +58,18 @@ public class RuleTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void makeDecisionShouldThrowExceptionPlayerScoreIsNegative() {
+    public void decideActionShouldThrowExceptionPlayerScoreIsNegative() {
         rule.decideAction(-1, 2);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void makeDecisionShouldThrowExceptionDiceValueIsNegative() {
+    public void decideActionShouldThrowExceptionDiceValueIsNegative() {
         rule.decideAction(2, -1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void decideActionShouldThrowExceptionIfBothInputsAreNegative() {
+        rule.decideAction(-1, -1);
     }
 
     @Test(expected = IllegalArgumentException.class)

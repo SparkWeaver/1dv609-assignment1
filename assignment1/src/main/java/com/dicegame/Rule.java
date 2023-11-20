@@ -2,6 +2,8 @@ package com.dicegame;
 
 import java.util.List;
 
+import com.dicegame.Player.State;
+
 public class Rule {
 
     public enum Decision {
@@ -39,6 +41,15 @@ public class Rule {
         } else {
             return Decision.ROLL;
         }
+    }
+
+    public boolean isGameOver(List<Player> players) {
+        for(Player player : players) {
+            if(player.getState() != State.NON_ACTIVE) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static Player determineWinner(List<Player> players) {
