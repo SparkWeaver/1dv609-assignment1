@@ -67,15 +67,16 @@ public class Rule {
             throw new IllegalArgumentException("Player list can not be empty  or null.");
         }
 
-        Player winner = players.get(0);
-        for (int i = 1; i < players.size(); i++) {
-            Player currentPlayer = players.get(i);
-
-            if (currentPlayer.getScore() <= scoreLimit && 
-                (scoreLimit - currentPlayer.getScore() < scoreLimit - winner.getScore() || winner.getScore() > scoreLimit)) {
-                winner = currentPlayer;
+        Player winner = null;
+        for (Player currentPlayer : players) {
+            if (currentPlayer.getScore() <= scoreLimit) {
+                if (winner == null || 
+                    (scoreLimit - currentPlayer.getScore() < scoreLimit - winner.getScore())) {
+                    winner = currentPlayer;
+                }
             }
         }
+
         return winner;
     }
 }
