@@ -67,7 +67,6 @@ public class ViewTest {
     }
 
 
-
     @Test
     public void promptForPlayerNameDoesNotReturnNull() {
         String expected = "Jon";
@@ -135,7 +134,6 @@ public class ViewTest {
     }
 
 
-
     @Test
     public void printWinnerPrintsCorrectWinnerInformation() {
         String expectedName = "Ted";
@@ -146,6 +144,14 @@ public class ViewTest {
 
         String expectedOutput = String.format("\nThe winner is %s, with a score of %d" + System.lineSeparator(), expectedName, expectedScore);
         view.printWinner(mockPlayer);
+
+        assertEquals(expectedOutput, outContent.toString());
+    }
+
+    @Test
+    public void printWinnerPrintAllLoserMessage() {
+        String expectedOutput = "\nThe where no winner's this game." + System.lineSeparator();
+        view.printWinner(null);
 
         assertEquals(expectedOutput, outContent.toString());
     }
