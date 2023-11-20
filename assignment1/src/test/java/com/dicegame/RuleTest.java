@@ -8,15 +8,22 @@ import org.junit.Test;
 public class RuleTest {
 
     private Rule rule;
+    private int goal;
 
     @Before
     public void setUp() {
-        rule = new Rule();
+        goal = 21;
+        rule = new Rule(goal);
+    }
+
+    @Test
+    public void getGoalReturnSetGoal() {
+        assertEquals(goal, rule.getGoal());
     }
 
     @Test
     public void testRollAgainDecision() {
-        assertEquals(Rule.Decision.THROW_AGAIN, rule.makeDecision(5, 5));
+        assertEquals(Rule.Decision.ROLL, rule.makeDecision(5, 5));
     }
 
     @Test

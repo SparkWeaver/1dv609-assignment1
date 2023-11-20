@@ -41,7 +41,7 @@ public class View {
 
         switch (scanner.nextInt()) {
             case 1:
-                return Rule.Decision.THROW_AGAIN;
+                return Rule.Decision.ROLL;
             case 2:
                 return Rule.Decision.STAY;
             case 3:

@@ -5,11 +5,10 @@ import java.util.List;
 public class Rule {
 
     public enum Decision {
-        THROW_AGAIN,
+        ROLL,
         STAY,
         HOLD,
-        BUST,
-        END
+        BUST
     }
 
     private static int scoreLimit = 21;
@@ -27,7 +26,7 @@ public class Rule {
         } else if (newScore > scoreLimit - 10) {
             return Decision.STAY;
         } else {
-            return Decision.THROW_AGAIN;
+            return Decision.ROLL;
         }
     }
 
