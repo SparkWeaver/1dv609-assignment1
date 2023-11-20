@@ -28,22 +28,22 @@ public class RuleTest {
 
     @Test
     public void testRollAgainDecision() {
-        assertEquals(Rule.Decision.ROLL, rule.decideAction(5, 5));
+        assertEquals(Rule.Action.ROLL, rule.decideAction(5, 5));
     }
 
     @Test
     public void testStayDecision() {
-        assertEquals(Rule.Decision.STAY, rule.decideAction(10, 5));
+        assertEquals(Rule.Action.STAY, rule.decideAction(10, 5));
     }
 
     @Test
     public void testHoldDecision() {
-        assertEquals(Rule.Decision.HOLD, rule.decideAction(10, 9));
+        assertEquals(Rule.Action.HOLD, rule.decideAction(10, 9));
     }
 
     @Test
     public void testBustDecision() {
-        assertEquals(Rule.Decision.BUST, rule.decideAction(10, 12));
+        assertEquals(Rule.Action.BUST, rule.decideAction(10, 12));
     }
 
     @Test

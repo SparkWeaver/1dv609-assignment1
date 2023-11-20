@@ -32,8 +32,7 @@ public class HumanPlayerTest {
 
         System.setOut(new PrintStream(outContent));
         mockScanner = Mockito.mock(Scanner.class);
-        view = new View();
-        view.setScanner(mockScanner);
+        view = new View(mockScanner);
 
         humanPlayer = new HumanPlayer(name, view);
 

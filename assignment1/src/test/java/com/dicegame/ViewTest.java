@@ -16,11 +16,13 @@ public class ViewTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
+    private Scanner mockScanner;
     private View view;
 
     @Before
     public void setUp() {
-        view = new View();
+        mockScanner = Mockito.mock(Scanner.class);
+        view = new View(mockScanner);
         System.setOut(new PrintStream(outContent));
     }
 
@@ -32,19 +34,16 @@ public class ViewTest {
     @Test
     public void promptForPlayerNameDoesNotReturnNull() {
         String expected = "Jon";
-        Scanner mockScanner = Mockito.mock(Scanner.class);
         when(mockScanner.nextLine()).thenReturn(null, expected);
-        view.setScanner(mockScanner);
 
         String result = view.promptForPlayerName();
+
         assertEquals(expected, result);
     }
-    
+
     @Test
     public void promptForPlayerNameDoesNotReturnEmptyNameString() {
-        Scanner mockScanner = Mockito.mock(Scanner.class);
         when(mockScanner.nextLine()).thenReturn("", "Jon");
-        view.setScanner(mockScanner);
 
         String result = view.promptForPlayerName();
         assertEquals("Jon", result);
@@ -53,9 +52,8 @@ public class ViewTest {
     @Test
     public void promptForPlayerNameDoesNotReturnLargeNameString() {
         String expected = "Jon the Magnificent";
-        Scanner mockScanner = Mockito.mock(Scanner.class);
+
         when(mockScanner.nextLine()).thenReturn("0123456789-0123456789-0123456789", expected);
-        view.setScanner(mockScanner);
 
         String result = view.promptForPlayerName();
         assertEquals(expected, result);
@@ -63,14 +61,18 @@ public class ViewTest {
 
     @Test
     public void testPrintTitleAndInstructions() {
-        View view = new View();
+
         view.printTitleAndInstructions();
 
-        String expectedOutput = System.lineSeparator() + 
-        "[ title ]" + System.lineSeparator() + 
-        "[ instructions ]" + System.lineSeparator() +
-        System.lineSeparator();
-        
+        String expectedOutput = System.lineSeparator() + "Welcome to Dice Blackjack!" +
+                System.lineSeparator() +
+                System.lineSeparator() + "The rules are simple:" +
+                System.lineSeparator() + " - Enter your player name to begin." +
+                System.lineSeparator() + " - You have three attempts each turn." +
+                System.lineSeparator() + " - The player that gets closest to 21 wins." +
+                System.lineSeparator() + " - If you get over 21 you lose." +
+                System.lineSeparator() + System.lineSeparator();
+
         assertEquals(expectedOutput, outContent.toString());
     }
 }

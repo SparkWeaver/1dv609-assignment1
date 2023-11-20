@@ -3,31 +3,32 @@ package com.dicegame;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.dicegame.Player.State;
-
 public class Game {
 
-    private enum PlayerName {
+    private enum BotName {
         Emma,
         James,
         Sophia
     }
 
     private final String RESERVENAME = "Jon";
-    private List<Player> players;
-    private List<Dice> dices;
+    private LinkedList<Player> players;
+    private LinkedList<Dice> dices;
     private boolean isGameActive;
     private boolean isGameOver;
     private View view;
     private Rule rule;
 
-    public Game(String name, View view) {
-        rule = new Rule(21);
-        players = new LinkedList<Player>();
-        dices = new LinkedList<Dice>();
+    // Initialize the game.
+    public Game(LinkedList<Player> players, LinkedList<Dice> dices, View view, Rule rule) {
 
-        players.add(new HumanPlayer(name, view));
-        for (PlayerName playerName : PlayerName.values()) {
+        this.players = players;
+        this.dices = dices;
+        this.view = view;
+        this.rule = rule;
+
+        // Build Bots
+        for (BotName playerName : BotName.values()) {
             Player newPlayer = new BotPlayer(playerName.name());
             if(players.contains(newPlayer)) {
                 players.add(new BotPlayer(RESERVENAME));
@@ -36,15 +37,11 @@ public class Game {
             }
         }
 
-        for(int i = 0; i < 2; i++) {
-            dices.add(new Dice());
-        }
-
-        this.view = view;
         isGameActive = false;
         isGameOver = false;
     }
 
+    // Starts the game.
     public void start() {
         isGameActive = true;
         while(isGameActive) {
@@ -57,7 +54,7 @@ public class Game {
                     view.printBotState(player, dices);
                 }
             }
-            if(allPlayersAreDone()) {
+            if(rule.isGameOver(players)) {
                 isGameActive = false;
                 isGameOver = true;
             }
@@ -66,18 +63,9 @@ public class Game {
         view.printWinner(rule.determineWinner(players));
     }
 
-    private boolean allPlayersAreDone() {
-        for(Player player : players) {
-            if(player.getState() != State.NON_ACTIVE) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-    /** Below should be removed later on */
-
+    /**
+     * Methods I might remove or keep.
+     */
     public List<Player> getPlayers() {
         return players;
     }
@@ -92,13 +80,5 @@ public class Game {
 
     public boolean isOver() {
         return isGameOver;
-    }
-
-    public void setDice(List<Dice> dices) {
-        this.dices = dices;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
     }
 }

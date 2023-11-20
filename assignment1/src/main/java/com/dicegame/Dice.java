@@ -2,6 +2,7 @@ package com.dicegame;
 
 import java.util.Random;
 
+// A basic dice object.
 public class Dice {
 
     private Random random = new Random();

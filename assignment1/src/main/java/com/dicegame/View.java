@@ -3,16 +3,25 @@ package com.dicegame;
 import java.util.List;
 import java.util.Scanner;
 
-import com.dicegame.Rule.Decision;
+import com.dicegame.Rule.Action;
 
 public class View {
 
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
+
+    public View(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     public void printTitleAndInstructions() {
         System.out.println("");
-        System.out.println("[ title ]");
-        System.out.println("[ instructions ]");
+        System.out.println("Welcome to Dice Blackjack!");
+        System.out.println("");
+        System.out.println("The rules are simple:");
+        System.out.println(" - Enter your player name to begin.");
+        System.out.println(" - You have three attempts each turn.");
+        System.out.println(" - The player that gets closest to 21 wins.");
+        System.out.println(" - If you get over 21 you lose.");
         System.out.println("");
     }
 
@@ -28,7 +37,7 @@ public class View {
         }
     }
 
-    public Decision promptForPlayerDefaultDecision(int score, int diceSum) {
+    public Action promptForPlayerDefaultAction(int score, int diceSum) {
 
         System.out.println("");
         System.out.println("Score: " + score + " Dice roll: " + diceSum);
@@ -40,17 +49,17 @@ public class View {
 
         switch (scanner.nextInt()) {
             case 1:
-                return Rule.Decision.ROLL;
+                return Rule.Action.ROLL;
             case 2:
-                return Rule.Decision.STAY;
+                return Rule.Action.STAY;
             case 3:
-                return Rule.Decision.HOLD;
+                return Rule.Action.HOLD;
             default:
-                return Rule.Decision.BUST;
+                return Rule.Action.BUST;
         }
     }
 
-    public Decision promptForPlayerBustDecision(int score, int diceSum) {
+    public Action promptForPlayerBustAction(int score, int diceSum) {
         System.out.println("");
         System.out.println("Score: " + score + " Dice roll: " + diceSum);
         System.out.println("");
@@ -60,13 +69,13 @@ public class View {
 
         switch (scanner.nextInt()) {
             case 1:
-                return Rule.Decision.BUST;
+                return Rule.Action.BUST;
             default:
-                return Rule.Decision.BUST;
+                return Rule.Action.BUST;
         }
     }
 
-    public Decision promptForPlayerNoMoreTurnsDecision(int score, int diceSum) {
+    public Action promptForPlayerNoMoreTurnsAction(int score, int diceSum) {
         System.out.println("");
         System.out.println("Score: " + score + " Dice roll: " + diceSum);
         System.out.println("");
@@ -77,11 +86,11 @@ public class View {
 
         switch (scanner.nextInt()) {
             case 1:
-                return Rule.Decision.STAY;
+                return Rule.Action.STAY;
             case 2:
-                return Rule.Decision.HOLD;
+                return Rule.Action.HOLD;
             default:
-                return Rule.Decision.STAY;
+                return Rule.Action.STAY;
         }
     }
 
@@ -99,11 +108,6 @@ public class View {
     public void printWinner(Player player) {
         String output = String.format("\nThe winner is %s, with a score of %d", player.getName(), player.getScore());
         System.out.println(output);
-    }
-
-    /** Methods below should be removed when done */
-    public void setScanner(Scanner scanner) {
-        this.scanner = scanner;
     }
 
 }

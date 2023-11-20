@@ -18,6 +18,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -26,27 +27,39 @@ public class GameTest {
 
     private Game game;
     private String playerName;
-    private List<Dice> mockDices;
+    private LinkedList<Dice> mockDices;
+    private LinkedList<Player> mockPlayers;
+    private Player mockPlayer;
     private View mochView;
+    private Rule mockRule;
     private Scanner mockScanner;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
     @Before
     public void setUp() {
-        playerName = "Ted";
+        // Mock the player
+        mockPlayer = Mockito.mock(HumanPlayer.class);
+        mockPlayers = new LinkedList<>();
+        mockPlayers.add(mockPlayer);
 
+        // Mock the scanner -> view
         System.setOut(new PrintStream(outContent));
         mockScanner = Mockito.mock(Scanner.class);
-        mochView = new View();
+        mochView = new View(mockScanner);
         when(mockScanner.nextInt()).thenReturn(3);
-        mochView.setScanner(mockScanner);
 
+        // Mock the dices
         Dice mockDice1 = Mockito.mock(Dice.class);
         Dice mockDice2 = Mockito.mock(Dice.class);
         when(mockDice1.roll()).thenReturn(6);
         when(mockDice2.roll()).thenReturn(6);
-        mockDices = Arrays.asList(mockDice1, mockDice2);
+        mockDices = new LinkedList<>();
+        mockDices.addAll(Arrays.asList(new Dice(), new Dice()));
+
+        // Mock the rules
+        mockRule = Mockito.mock(Rule.class)
+
 
         game = new Game(playerName, mochView);
         game.setDice(mockDices);

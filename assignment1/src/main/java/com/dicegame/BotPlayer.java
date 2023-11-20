@@ -2,7 +2,7 @@ package com.dicegame;
 
 import java.util.List;
 
-import com.dicegame.Rule.Decision;
+import com.dicegame.Rule.Action;
 
 public class BotPlayer extends Player {
 
@@ -19,12 +19,12 @@ public class BotPlayer extends Player {
             for(Dice dice : dices) {
                 diceSum += dice.roll();
             } 
-            Decision decision = rule.decideAction(score, diceSum);
+            Action decision = rule.decideAction(score, diceSum);
 
-            if(decision == Decision.BUST || decision == Decision.HOLD) {
+            if(decision == Action.BUST || decision == Action.HOLD) {
                 state = State.NON_ACTIVE;
                 break;
-            } else if (decision == Decision.STAY) {
+            } else if (decision == Action.STAY) {
                 break;
             }
         }

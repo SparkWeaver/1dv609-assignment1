@@ -6,15 +6,17 @@ import com.dicegame.Player.State;
 
 public class Rule {
 
-    public enum Decision {
+    // Action for bot to take
+    public enum Action {
         ROLL,
         STAY,
         HOLD,
         BUST
     }
 
-    private int scoreLimit = 21;
+    private int scoreLimit;
 
+    // Constructor
     public Rule(int scoreLimit) {
         if (scoreLimit < 2) {
             throw new IllegalArgumentException("Rule score limit cant be less than minimum dice score");
@@ -22,27 +24,30 @@ public class Rule {
         this.scoreLimit = scoreLimit;
     }
 
+    // Return the score limit
     public int getScoreLimit() {
         return scoreLimit;
     }
 
-    public Decision decideAction(int playerScore, int diceScore) {
+    // Decide the action of the bot
+    public Action decideAction(int playerScore, int diceScore) {
         if (playerScore < 0 || diceScore < 0) {
             throw new IllegalArgumentException("Player score and dice value must be non-negative.");
         }
 
         int newScore = playerScore + diceScore;
         if(newScore > scoreLimit) {
-            return Decision.BUST;
+            return Action.BUST;
         } else if (newScore > scoreLimit - 3 && newScore <= scoreLimit) {
-            return Decision.HOLD;
+            return Action.HOLD;
         } else if (newScore > scoreLimit - 10) {
-            return Decision.STAY;
+            return Action.STAY;
         } else {
-            return Decision.ROLL;
+            return Action.ROLL;
         }
     }
 
+    // Checks if the game is over
     public boolean isGameOver(List<Player> players) {
         if (players == null || players.isEmpty()) {
             throw new IllegalArgumentException("Player list can not be empty or null.");
@@ -56,6 +61,7 @@ public class Rule {
         return true;
     }
 
+    // Determine the winner
     public Player determineWinner(List<Player> players) {
         if (players == null || players.isEmpty()) {
             throw new IllegalArgumentException("Player list can not be empty  or null.");
