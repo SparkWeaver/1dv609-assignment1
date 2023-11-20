@@ -82,4 +82,8 @@ public class RuleTest {
         rule.isGameOver(Arrays.asList());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void isGameOverShouldThrowExceptionIfPlayerListIsNull () {
+        rule.isGameOver(null);
+    }
 }
