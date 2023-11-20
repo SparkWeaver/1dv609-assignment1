@@ -82,10 +82,20 @@ public class RuleTest {
 
 
     @Test
-    public void determineWinnerReturnsTheCorrectWinningPlayer() {
-        when(player1.getScore()).thenReturn(24);
+    public void determineWinnerReturnsThePlayerAsTheWinningPlayerIfAllPlayersHaveEqualScore() {
+        
+        when(player1.getScore()).thenReturn(21);
         when(player2.getScore()).thenReturn(21);
-        when(player3.getScore()).thenReturn(20);
+        when(player3.getScore()).thenReturn(21);
+
+        assertEquals(player1, rule.determineWinner(players));
+    }
+
+    @Test
+    public void determineWinnerReturnsTheCorrectWinningPlayer() {
+        when(player1.getScore()).thenReturn(30);
+        when(player2.getScore()).thenReturn(21);
+        when(player3.getScore()).thenReturn(10);
 
         assertEquals(player2, rule.determineWinner(players));
     }
