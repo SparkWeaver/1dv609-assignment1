@@ -13,6 +13,14 @@ public class Rule {
 
     private static int scoreLimit = 21;
 
+    public Rule(int goal) {
+        this.scoreLimit = goal;
+    }
+
+    public int getGoal() {
+        return scoreLimit;
+    }
+
     public Decision makeDecision(int playerScore, int diceValue) {
         if (playerScore < 0 || diceValue < 0) {
             throw new IllegalArgumentException("Player score and dice value must be non-negative.");
