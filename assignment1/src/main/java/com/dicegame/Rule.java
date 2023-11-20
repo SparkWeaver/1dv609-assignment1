@@ -45,7 +45,7 @@ public class Rule {
 
     public boolean isGameOver(List<Player> players) {
         if (players == null || players.isEmpty()) {
-            throw new IllegalArgumentException("Player list can not be empty.");
+            throw new IllegalArgumentException("Player list can not be empty or null.");
         }
 
         for(Player player : players) {
@@ -57,8 +57,8 @@ public class Rule {
     }
 
     public static Player determineWinner(List<Player> players) {
-        if (players.isEmpty()) {
-            throw new IllegalArgumentException("Player list can not be empty.");
+        if (players == null || players.isEmpty()) {
+            throw new IllegalArgumentException("Player list can not be empty  or null.");
         }
 
         Player winner = players.get(0);
