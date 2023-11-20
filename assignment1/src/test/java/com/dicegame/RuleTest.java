@@ -37,7 +37,6 @@ public class RuleTest {
         assertEquals(scoreLimit, rule.getScoreLimit());
     }
 
-
     @Test
     public void testRollAgainDecision() {
         assertEquals(Rule.Action.ROLL, rule.decideAction(5, 5));
@@ -58,8 +57,6 @@ public class RuleTest {
         assertEquals(Rule.Action.BUST, rule.decideAction(10, 12));
     }
 
-
-
     @Test
     public void isGameOverShouldReturnTrueIfAllPlayersAreNonActive(){
 
@@ -79,7 +76,6 @@ public class RuleTest {
 
         assertFalse(rule.isGameOver(players));
     }
-
 
     @Test
     public void determineWinnerReturnsThePlayerAsTheWinningPlayerIfAllPlayersHaveEqualScore() {
@@ -109,7 +105,6 @@ public class RuleTest {
         assertNull(rule.determineWinner(players));
     }
 
-
     @Test(expected = IllegalArgumentException.class)
     public void decideActionShouldThrowExceptionPlayerScoreIsNegative() {
         rule.decideAction(-1, 2);
@@ -131,22 +126,22 @@ public class RuleTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void isGameOverShouldThrowExceptionIfPlayerListIsEmpty () {
+    public void isGameOverShouldThrowExceptionIfPlayerListIsEmpty() {
         rule.isGameOver(Arrays.asList());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void isGameOverShouldThrowExceptionIfPlayerListIsNull () {
+    public void isGameOverShouldThrowExceptionIfPlayerListIsNull() {
         rule.isGameOver(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void determineWinnerThrowExceptionIfPlayerListIsEmpty () {
+    public void determineWinnerThrowExceptionIfPlayerListIsEmpty() {
         rule.determineWinner(Arrays.asList());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void determineWinnerThrowExceptionIfPlayerListIsNull () {
+    public void determineWinnerThrowExceptionIfPlayerListIsNull() {
         rule.determineWinner(null);
     }
 }

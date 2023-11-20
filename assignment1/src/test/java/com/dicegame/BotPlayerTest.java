@@ -18,7 +18,6 @@ public class BotPlayerTest {
     private Dice mockDice2;
     private List<Dice> mockedDices;
 
-
     @Before
     public void setUp() {
         name = "TED";
@@ -29,7 +28,7 @@ public class BotPlayerTest {
 
         mockedDices = Arrays.asList(mockDice1, mockDice2);
     }
-    
+
     @Test
     public void testBotDecisionToRollAgain() {
         when(mockDice1.roll()).thenReturn(1,2,3,4);

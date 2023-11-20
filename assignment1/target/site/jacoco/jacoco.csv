@@ -1,12 +1,12 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 assignment1,com.dicegame,Player,2,97,3,13,0,22,3,12,0,7
-assignment1,com.dicegame,Rule.Action,0,27,0,0,0,5,0,1,0,1
-assignment1,com.dicegame,Game.BotName,0,21,0,0,0,4,0,1,0,1
+assignment1,com.dicegame,Rule.Action,0,33,0,0,0,6,0,1,0,1
+assignment1,com.dicegame,Game.BotName,0,27,0,0,0,5,0,1,0,1
 assignment1,com.dicegame,HumanPlayer,0,95,0,14,0,27,0,9,0,2
 assignment1,com.dicegame,Dice,0,32,0,0,0,9,0,3,0,3
 assignment1,com.dicegame,BotPlayer,0,59,0,10,0,16,0,7,0,2
 assignment1,com.dicegame,App,66,0,0,0,12,0,2,0,2,0
 assignment1,com.dicegame,Player.State,0,15,0,0,0,3,0,1,0,1
-assignment1,com.dicegame,Game,80,60,13,3,17,15,10,4,3,3
+assignment1,com.dicegame,Game,5,100,2,12,1,22,2,9,0,4
 assignment1,com.dicegame,Rule,0,132,2,32,0,33,2,20,0,5
-assignment1,com.dicegame,View,75,144,5,12,12,46,6,12,2,6
+assignment1,com.dicegame,View,0,224,0,19,0,60,0,19,0,8

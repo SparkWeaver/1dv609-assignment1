@@ -50,7 +50,7 @@ public class Rule {
 
     // Checks if the game is over
     public boolean isGameOver(List<Player> players) {
-        if (players == null || players.isEmpty()) {
+        if (players == null || players.size() == 0) {
             throw new IllegalArgumentException("Player list can not be empty or null.");
         }
 

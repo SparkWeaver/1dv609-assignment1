@@ -8,14 +8,12 @@ public class Game {
     private enum BotName {
         Emma,
         James,
-        Sophia
+        Sophia,
+        Jon
     }
 
-    private final String RESERVENAME = "Jon";
     private LinkedList<Player> players;
     private LinkedList<Dice> dices;
-    private boolean isGameActive;
-    private boolean isGameOver;
     private View view;
     private Rule rule;
 
@@ -27,24 +25,17 @@ public class Game {
         this.view = view;
         this.rule = rule;
 
-        // Build Bots
         for (BotName playerName : BotName.values()) {
             Player newPlayer = new BotPlayer(playerName.name());
-            if(players.contains(newPlayer)) {
-                players.add(new BotPlayer(RESERVENAME));
-            } else {
+            if(!players.contains(newPlayer)) {
                 players.add(newPlayer);
             }
         }
-
-        isGameActive = false;
-        isGameOver = false;
     }
 
     // Starts the game.
     public void start() {
-        isGameActive = true;
-        while(isGameActive) {
+        while(true) {
             for(Player player : players) {
 
                 if(player instanceof HumanPlayer && player.getState() == Player.State.ACTIVE) {
@@ -55,8 +46,7 @@ public class Game {
                 }
             }
             if(rule.isGameOver(players)) {
-                isGameActive = false;
-                isGameOver = true;
+                break;
             }
     
         }
@@ -72,13 +62,5 @@ public class Game {
 
     public List<Dice> getDices() {
         return dices;
-    }
-
-    public boolean isActive() {
-        return isGameActive;
-    }
-
-    public boolean isOver() {
-        return isGameOver;
     }
 }

@@ -13,15 +13,15 @@ public class DiceTest {
     public void setUp() {
         dice = new Dice();
     }
-    
+
     @Test
     public void returnNumbersFromOneToDefaultSizeOnDiceRoll() {
         final int defaultSize = 6;
 
         int result;
-        for(int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             result = dice.roll();
-            assertTrue(result >= 1 && result <=defaultSize);
+            assertTrue(result >= 1 && result <= defaultSize);
         }
     }
 
@@ -31,11 +31,11 @@ public class DiceTest {
         Boolean variation = false;
 
         int currentRoll;
-        for(int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             currentRoll = dice.roll();
-            if(currentRoll != previousRoll) {
-               variation = true;
-               break; 
+            if (currentRoll != previousRoll) {
+                variation = true;
+                break;
             }
             previousRoll = currentRoll;
         }
@@ -44,7 +44,7 @@ public class DiceTest {
 
     @Test
     public void getValueShouldReturnTheSameValueAsRoll() {
-        for(int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             assertTrue(dice.roll() == dice.getValue());
         }
     }

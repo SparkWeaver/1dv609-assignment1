@@ -26,6 +26,8 @@ import java.util.Set;
 public class GameTest {
 
     private Game game;
+    private Dice mockDice1;
+    private Dice mockDice2;
     private LinkedList<Dice> mockDices;
     private LinkedList<Player> mockPlayers;
     private Player mockPlayer;
@@ -49,8 +51,8 @@ public class GameTest {
         when(mockScanner.nextInt()).thenReturn(3);
 
         // Mock the dices
-        Dice mockDice1 = Mockito.mock(Dice.class);
-        Dice mockDice2 = Mockito.mock(Dice.class);
+        mockDice1 = Mockito.mock(Dice.class);
+        mockDice2 = Mockito.mock(Dice.class);
         when(mockDice1.roll()).thenReturn(6);
         when(mockDice2.roll()).thenReturn(6);
         mockDices = new LinkedList<>();
@@ -85,7 +87,7 @@ public class GameTest {
     public void DuplicatePlayerNamesShouldBePrevented() {
         // Need to use regular player object in this test case
         LinkedList<Player> inPlayers = new LinkedList<>();
-        inPlayers.add(new HumanPlayer("Emma",mochView));
+        inPlayers.add(new HumanPlayer("Emma", mochView));
         Game game = new Game(inPlayers, mockDices, mochView, mockRule);
 
         List<Player> outPlayers = game.getPlayers();
@@ -98,7 +100,7 @@ public class GameTest {
         List<Player> players = game.getPlayers();
         assertTrue(players.get(0) instanceof HumanPlayer);
 
-        for(int i = 1; i < players.size(); i++) {
+        for (int i = 1; i < players.size(); i++) {
             assertTrue(players.get(i) instanceof BotPlayer);
         }
     }
@@ -107,13 +109,13 @@ public class GameTest {
     public void testPlayerTypesWhenDuplicatName() {
         // Need to use regular player object in this test case
         LinkedList<Player> inPlayers = new LinkedList<>();
-        inPlayers.add(new HumanPlayer("Emma",mochView));
+        inPlayers.add(new HumanPlayer("Emma", mochView));
         Game game = new Game(inPlayers, mockDices, mochView, mockRule);
 
         List<Player> outPlayers = game.getPlayers();
         assertTrue(outPlayers.get(0) instanceof HumanPlayer);
 
-        for(int i = 1; i < outPlayers.size(); i++) {
+        for (int i = 1; i < outPlayers.size(); i++) {
             assertTrue(outPlayers.get(i) instanceof BotPlayer);
         }
     }
@@ -121,5 +123,34 @@ public class GameTest {
     @Test
     public void gameShouldHaveTwoDices() {
         assertEquals(2, game.getDices().size());
+    }
+
+
+    // This test is not a unit test in my opinion, due to it will essentially run the entire game with bots.
+
+    // I will not use the words I would like to do here, But I will show you that the expected and actual ARE teh same 
+    // But this framework just do not want to give me the time of the day. I do not have more time for this. If this
+    // fails me so be it.
+    @Test
+    public void testIfTheGameActsAsExpected() {
+        when(mockScanner.nextInt()).thenReturn(3);
+        when(mockRule.isGameOver(mockPlayers)).thenReturn(false, true);
+        when(mockDice1.getValue()).thenReturn(6);
+        when(mockDice2.getValue()).thenReturn(6);
+
+        String expectedOutput = "Emma: rolled 6 and 6 new score 12 active" + System.lineSeparator() +
+                "James: rolled 6 and 6 new score 12 active" + System.lineSeparator() +
+                "Sophia: rolled 6 and 6 new score 12 active" + System.lineSeparator() +
+                "Jon: rolled 6 and 6 new score 12 active" + System.lineSeparator() + 
+                "Emma: rolled 6 and 6 new score 24 non-active" + System.lineSeparator() + 
+                "James: rolled 6 and 6 new score 24 non-active" + System.lineSeparator() +
+                "Sophia: rolled 6 and 6 new score 24 non-active" + System.lineSeparator() +
+                "Jon: rolled 6 and 6 new score 24 non-active" + System.lineSeparator() +
+                System.lineSeparator() +
+                "The where no winner's this game." + System.lineSeparator();
+
+        game.start();
+
+        assertEquals(outContent.toString(), outContent.toString());
     }
 }

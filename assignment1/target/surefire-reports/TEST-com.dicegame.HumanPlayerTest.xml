@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.dicegame.HumanPlayerTest" time="0.05" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.dicegame.HumanPlayerTest" time="0.037" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="20"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-20\bin"/>
-    <property name="sun.java.command" value="C:\Users\lundm\AppData\Local\Temp\surefire10585738102154360189\surefirebooter-20231120183638755_3.jar C:\Users\lundm\AppData\Local\Temp\surefire10585738102154360189 2023-11-20T18-36-38_642-jvmRun1 surefire-20231120183638755_1tmp surefire_0-20231120183638755_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\lundm\AppData\Local\Temp\surefire14640186073549910163\surefirebooter-20231120202240177_3.jar C:\Users\lundm\AppData\Local\Temp\surefire14640186073549910163 2023-11-20T20-22-40_024-jvmRun1 surefire-20231120202240177_1tmp surefire_0-20231120202240177_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\lundm\OneDrive\Dokument\School\1DV609 - Software Testing\1dv609-assignment1\assignment1\target\test-classes;C:\Users\lundm\OneDrive\Dokument\School\1DV609 - Software Testing\1dv609-assignment1\assignment1\target\classes;C:\Users\lundm\.m2\repository\junit\junit\4.13\junit-4.13.jar;C:\Users\lundm\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\lundm\.m2\repository\org\mockito\mockito-core\5.7.0\mockito-core-5.7.0.jar;C:\Users\lundm\.m2\repository\net\bytebuddy\byte-buddy\1.14.9\byte-buddy-1.14.9.jar;C:\Users\lundm\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.9\byte-buddy-agent-1.14.9.jar;C:\Users\lundm\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\lundm\AppData\Local\Temp\surefire10585738102154360189\surefirebooter-20231120183638755_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\lundm\AppData\Local\Temp\surefire14640186073549910163\surefirebooter-20231120202240177_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="20.0.2+9-78"/>
@@ -59,10 +59,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="64.0"/>
   </properties>
-  <testcase name="testHumanDecisionDuringDefaultOutput" classname="com.dicegame.HumanPlayerTest" time="0.024"/>
-  <testcase name="testHumanDecisionToRollAgain" classname="com.dicegame.HumanPlayerTest" time="0.005"/>
-  <testcase name="testHumanDecisionDuringNoMoreTurnsOutput" classname="com.dicegame.HumanPlayerTest" time="0.005"/>
-  <testcase name="testHumanDecisionToBust" classname="com.dicegame.HumanPlayerTest" time="0.005"/>
-  <testcase name="testHumanDecisionToHold" classname="com.dicegame.HumanPlayerTest" time="0.004"/>
-  <testcase name="testHumanDecisionToStay" classname="com.dicegame.HumanPlayerTest" time="0.003"/>
+  <testcase name="testHumanDecisionToRollAgain" classname="com.dicegame.HumanPlayerTest" time="0.007"/>
+  <testcase name="testHumanDecisionDuringNoMoreTurnsOutput" classname="com.dicegame.HumanPlayerTest" time="0.018"/>
+  <testcase name="testHumanDecisionToBust" classname="com.dicegame.HumanPlayerTest" time="0.004"/>
+  <testcase name="testHumanDecisionToHold" classname="com.dicegame.HumanPlayerTest" time="0.002"/>
+  <testcase name="testHumanDecisionToStay" classname="com.dicegame.HumanPlayerTest" time="0.002"/>
 </testsuite>

@@ -66,7 +66,6 @@ public class ViewTest {
         assertEquals(expectedOutput, outContent.toString());
     }
 
-
     @Test
     public void promptForPlayerNameDoesNotReturnNull() {
         String expected = "Jon";
@@ -96,7 +95,6 @@ public class ViewTest {
         assertEquals(expected, result);
     }
 
-
     @Test
     public void printBotStatePrintsCorrectInformationWhenActive() {
         String expectedName = "Ted";
@@ -109,7 +107,8 @@ public class ViewTest {
         when(mockDice1.getValue()).thenReturn(expectedDiceValue);
         when(mockDice2.getValue()).thenReturn(expectedDiceValue);
 
-        String expectedOutput = String.format("%s: rolled %d and %d new score %d active" + System.lineSeparator(), expectedName, expectedDiceValue, expectedDiceValue, expectedScore);
+        String expectedOutput = String.format("%s: rolled %d and %d new score %d active" + System.lineSeparator(),
+                expectedName, expectedDiceValue, expectedDiceValue, expectedScore);
         view.printBotState(mockPlayer, mockDices);
 
         assertEquals(expectedOutput, outContent.toString());
@@ -127,12 +126,12 @@ public class ViewTest {
         when(mockDice1.getValue()).thenReturn(expectedDiceValue);
         when(mockDice2.getValue()).thenReturn(expectedDiceValue);
 
-        String expectedOutput = String.format("%s: rolled %d and %d new score %d non-active" + System.lineSeparator(), expectedName, expectedDiceValue, expectedDiceValue, expectedScore);
+        String expectedOutput = String.format("%s: rolled %d and %d new score %d non-active" + System.lineSeparator(),
+                expectedName, expectedDiceValue, expectedDiceValue, expectedScore);
         view.printBotState(mockPlayer, mockDices);
 
         assertEquals(expectedOutput, outContent.toString());
     }
-
 
     @Test
     public void printWinnerPrintsCorrectWinnerInformation() {
@@ -142,7 +141,8 @@ public class ViewTest {
         when(mockPlayer.getName()).thenReturn(expectedName);
         when(mockPlayer.getScore()).thenReturn(expectedScore);
 
-        String expectedOutput = String.format("\nThe winner is %s, with a score of %d" + System.lineSeparator(), expectedName, expectedScore);
+        String expectedOutput = String.format("\nThe winner is %s, with a score of %d" + System.lineSeparator(),
+                expectedName, expectedScore);
         view.printWinner(mockPlayer);
 
         assertEquals(expectedOutput, outContent.toString());
@@ -155,8 +155,6 @@ public class ViewTest {
 
         assertEquals(expectedOutput, outContent.toString());
     }
-
-
 
     @Test
     public void promptForPlayerDefaultActionShouldReturnEndStateIfPlayEnterNonOptions() {

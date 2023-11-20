@@ -21,7 +21,6 @@ public class PlayerTest {
         player = new Player(name);
     }
 
-    
     @Test
     public void getNameShouldReturnCorrectName() {
         assertEquals(name, player.getName());
@@ -48,7 +47,7 @@ public class PlayerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void throwDiceShouldThrowExceptionForEmptyDiceArray() {
-        List<Dice> emptyDices = Arrays.asList( new Dice[0] );
+        List<Dice> emptyDices = Arrays.asList(new Dice[0]);
         player.rollDice(emptyDices);
     }
 
