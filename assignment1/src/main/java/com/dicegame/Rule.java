@@ -57,6 +57,10 @@ public class Rule {
     }
 
     public static Player determineWinner(List<Player> players) {
+        if (players.isEmpty()) {
+            throw new IllegalArgumentException("Player list can not be empty.");
+        }
+
         Player winner = players.get(0);
         for (int i = 1; i < players.size(); i++) {
             Player currentPlayer = players.get(i);
