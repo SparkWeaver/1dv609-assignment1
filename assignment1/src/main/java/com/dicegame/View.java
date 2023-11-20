@@ -93,7 +93,7 @@ public class View {
             case 2:
                 return Rule.Action.HOLD;
             default:
-                return Rule.Action.STAY;
+                return Rule.Action.BUST;
         }
     }
 

@@ -155,4 +155,13 @@ public class ViewTest {
 
         assertEquals(expectedOutput, outContent.toString());
     }
+
+
+
+    @Test
+    public void promptForPlayerDefaultActionShouldReturnEndStateIfPlayEnterNonOptions() {
+        when(mockScanner.nextLine()).thenReturn("0");
+
+        assertEquals(Rule.Action.END, view.promptForPlayerDefaultAction(0, 0));
+    }
 }
