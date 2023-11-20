@@ -81,4 +81,5 @@ public class RuleTest {
     public void isGameOverShouldThrowExceptionIfPlayerListIsEmpty () {
         rule.isGameOver(Arrays.asList());
     }
+
 }

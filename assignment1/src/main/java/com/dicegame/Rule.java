@@ -44,6 +44,10 @@ public class Rule {
     }
 
     public boolean isGameOver(List<Player> players) {
+        if (players.isEmpty()) {
+            throw new IllegalArgumentException("Player list can not be empty.");
+        }
+
         for(Player player : players) {
             if(player.getState() != State.NON_ACTIVE) {
                 return false;
