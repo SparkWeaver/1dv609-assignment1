@@ -13,7 +13,7 @@ public class Rule {
         BUST
     }
 
-    private static int scoreLimit = 21;
+    private int scoreLimit = 21;
 
     public Rule(int scoreLimit) {
         if (scoreLimit < 2) {
@@ -56,7 +56,7 @@ public class Rule {
         return true;
     }
 
-    public static Player determineWinner(List<Player> players) {
+    public Player determineWinner(List<Player> players) {
         if (players == null || players.isEmpty()) {
             throw new IllegalArgumentException("Player list can not be empty  or null.");
         }
