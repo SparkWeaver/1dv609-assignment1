@@ -15,27 +15,18 @@ public class DiceTest {
     }
     
     @Test
-    public void returnNumbersBetweenOneAndDefaultSizeOnDiceRoll() {
+    public void returnNumbersFromOneToDefaultSizeOnDiceRoll() {
         final int defaultSize = 6;
 
         int result;
         for(int i = 0; i < 100; i++) {
             result = dice.roll();
-            assertTrue(String.format("Dice roll should be between 1 and %d, but was %d", defaultSize, result),
-                result >= 1 && result <=defaultSize);
+            assertTrue(result >= 1 && result <=defaultSize);
         }
     }
 
     @Test
-    public void theGetMethodReturnsTheSameValueAsRoll() {
-        for(int i = 0; i < 100; i++) {
-            assertTrue("Get value should be the same as the roll value", 
-                dice.roll() == dice.getValue());
-        }
-    }
-
-    @Test
-    public void rollRandomlyAssignNewValueToDice() {
+    public void rollRandomlyAssignNewValueToTheDice() {
         int previousRoll = dice.roll();
         Boolean variation = false;
 
@@ -48,7 +39,13 @@ public class DiceTest {
             }
             previousRoll = currentRoll;
         }
+        assertTrue(variation);
+    }
 
-        assertTrue("Dice roll should vary over multiple rolls", variation);
+    @Test
+    public void getValueShouldReturnTheSameValueAsRoll() {
+        for(int i = 0; i < 100; i++) {
+            assertTrue(dice.roll() == dice.getValue());
+        }
     }
 }
