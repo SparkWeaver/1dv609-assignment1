@@ -9,8 +9,14 @@ public class View {
 
     private Scanner scanner = new Scanner(System.in);
 
-    public String promptForPlayerName() {
+    public void printTitleAndInstructions() {
+        System.out.println("");
+        System.out.println("[ title ]");
+        System.out.println("[ instructions ]");
+        System.out.println("");
+    }
 
+    public String promptForPlayerName() {
         String name;
         while (true) {
             System.out.print("Enter your name: ");
@@ -22,14 +28,7 @@ public class View {
         }
     }
 
-    public void printTitleAndInstructions() {
-        System.out.println("");
-        System.out.println("[ title ]");
-        System.out.println("[ instructions ]");
-        System.out.println("");
-    }
-
-    public Decision promptForPlayerDecision(int score, int diceSum) {
+    public Decision promptForPlayerDefaultDecision(int score, int diceSum) {
 
         System.out.println("");
         System.out.println("Score: " + score + " Dice roll: " + diceSum);
@@ -63,7 +62,7 @@ public class View {
             case 1:
                 return Rule.Decision.BUST;
             default:
-                return Rule.Decision.END;
+                return Rule.Decision.BUST;
         }
     }
 
@@ -71,7 +70,7 @@ public class View {
         System.out.println("");
         System.out.println("Score: " + score + " Dice roll: " + diceSum);
         System.out.println("");
-        System.out.println("No more re-roll's");
+        System.out.println("No more roll's");
         System.out.println("1. Continue");
         System.out.println("2. Hold");
         System.out.println("");
@@ -82,7 +81,7 @@ public class View {
             case 2:
                 return Rule.Decision.HOLD;
             default:
-                return Rule.Decision.END;
+                return Rule.Decision.STAY;
         }
     }
 

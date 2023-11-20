@@ -17,7 +17,7 @@ public class HumanPlayer extends Player {
     public void rollDice(List<Dice> dices) {
         
         int diceSum = 0;
-        Decision decision = Decision.END;
+        Decision decision = Decision.ROLL;
         
         for(int i = 0; i < 3; i++) {
             diceSum = 0;
@@ -38,10 +38,7 @@ public class HumanPlayer extends Player {
                     }
                 }
             } else {
-                decision = view.promptForPlayerDecision(score, diceSum);
-                if (decision == Decision.END) {
-                    System.exit(0);
-                }
+                decision = view.promptForPlayerDefaultDecision(score, diceSum);
                 if(decision == Decision.HOLD) {
                     state = State.NON_ACTIVE;
                     break;
@@ -49,9 +46,7 @@ public class HumanPlayer extends Player {
                     break;
                 }
             }
-            if (decision == Decision.END) {
-                System.exit(0);
-            }
+
         }
         score += diceSum;
     }

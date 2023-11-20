@@ -20,7 +20,7 @@ public class Player {
             throw new IllegalArgumentException("Name cannot be null or empty");
         }
 
-        rule = new Rule();
+        rule = new Rule(21);
         this.name = name;
         state = State.ACTIVE;
         score = 0;

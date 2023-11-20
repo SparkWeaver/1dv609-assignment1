@@ -19,8 +19,10 @@ public class Game {
     private boolean isGameActive;
     private boolean isGameOver;
     private View view;
+    private Rule rule;
 
     public Game(String name, View view) {
+        rule = new Rule(21);
         players = new LinkedList<Player>();
         dices = new LinkedList<Dice>();
 
@@ -61,8 +63,7 @@ public class Game {
             }
     
         }
-        Player winner = determineTheWinner();
-        view.printWinner(winner);
+        view.printWinner(rule.determineWinner(players));
     }
 
     private boolean allPlayersAreDone() {
@@ -74,9 +75,6 @@ public class Game {
         return true;
     }
 
-    public Player determineTheWinner() {
-        return Rule.determineWinner(players);
-    }
 
     /** Below should be removed later on */
 

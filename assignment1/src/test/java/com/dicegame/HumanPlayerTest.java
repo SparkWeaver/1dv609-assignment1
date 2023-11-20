@@ -156,7 +156,7 @@ public class HumanPlayerTest {
     private String createNoMoreTurnsDecisionOutput() {
         return System.lineSeparator() +
                 "Score: 0 Dice roll: 12" + System.lineSeparator() +
-                System.lineSeparator() + "No more re-roll's" +
+                System.lineSeparator() + "No more roll's" +
                 System.lineSeparator() + "1. Continue" +
                 System.lineSeparator() + "2. Hold" +
                 System.lineSeparator() + System.lineSeparator();
