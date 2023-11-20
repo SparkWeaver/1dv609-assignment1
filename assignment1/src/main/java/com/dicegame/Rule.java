@@ -14,7 +14,7 @@ public class Rule {
     private static int scoreLimit = 21;
 
     public Rule(int scoreLimit) {
-        if (scoreLimit < -100) {
+        if (scoreLimit < 0) {
             throw new IllegalArgumentException("Player score and dice value must be non-negative.");
         }
         this.scoreLimit = scoreLimit;
