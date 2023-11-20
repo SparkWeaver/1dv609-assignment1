@@ -1,6 +1,7 @@
 package com.dicegame;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -55,6 +56,17 @@ public class RuleTest {
         when(player2.getState()).thenReturn(Player.State.NON_ACTIVE);
 
         assertTrue(rule.isGameOver(Arrays.asList(player1, player2)));
+    }
+
+    @Test
+    public void isGameOverShouldReturnFalseIfNotAllPlayersAreNonActive(){
+        Player player1 = Mockito.mock(Player.class);
+        Player player2 = Mockito.mock(Player.class);
+
+        when(player1.getState()).thenReturn(Player.State.ACTIVE);
+        when(player2.getState()).thenReturn(Player.State.NON_ACTIVE);
+
+        assertFalse(rule.isGameOver(Arrays.asList(player1, player2)));
     }
 
     @Test(expected = IllegalArgumentException.class)

@@ -3,9 +3,9 @@ com\dicegame\Player$State.class
 com\dicegame\Rule.class
 com\dicegame\View.class
 com\dicegame\App.class
-com\dicegame\Rule$Decision.class
-com\dicegame\Game$PlayerName.class
 com\dicegame\Game.class
+com\dicegame\Rule$Action.class
 com\dicegame\Player.class
 com\dicegame\HumanPlayer.class
+com\dicegame\Game$BotName.class
 com\dicegame\BotPlayer.class

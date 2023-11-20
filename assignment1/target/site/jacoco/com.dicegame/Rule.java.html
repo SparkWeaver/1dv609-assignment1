@@ -6,71 +6,77 @@ import com.dicegame.Player.State;
 
 public class Rule {
 
-<span class="fc" id="L9">    public enum Decision {</span>
-<span class="fc" id="L10">        ROLL,</span>
-<span class="fc" id="L11">        STAY,</span>
-<span class="fc" id="L12">        HOLD,</span>
-<span class="fc" id="L13">        BUST</span>
+    // Action for bot to take
+<span class="fc" id="L10">    public enum Action {</span>
+<span class="fc" id="L11">        ROLL,</span>
+<span class="fc" id="L12">        STAY,</span>
+<span class="fc" id="L13">        HOLD,</span>
+<span class="fc" id="L14">        BUST</span>
     }
 
-<span class="fc" id="L16">    private int scoreLimit = 21;</span>
+    private int scoreLimit;
 
-<span class="fc" id="L18">    public Rule(int scoreLimit) {</span>
-<span class="fc bfc" id="L19" title="All 2 branches covered.">        if (scoreLimit &lt; 2) {</span>
-<span class="fc" id="L20">            throw new IllegalArgumentException(&quot;Rule score limit cant be less than minimum dice score&quot;);</span>
+    // Constructor
+<span class="fc" id="L20">    public Rule(int scoreLimit) {</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        if (scoreLimit &lt; 2) {</span>
+<span class="fc" id="L22">            throw new IllegalArgumentException(&quot;Rule score limit cant be less than minimum dice score&quot;);</span>
         }
-<span class="fc" id="L22">        this.scoreLimit = scoreLimit;</span>
-<span class="fc" id="L23">    }</span>
+<span class="fc" id="L24">        this.scoreLimit = scoreLimit;</span>
+<span class="fc" id="L25">    }</span>
 
+    // Return the score limit
     public int getScoreLimit() {
-<span class="fc" id="L26">        return scoreLimit;</span>
+<span class="fc" id="L29">        return scoreLimit;</span>
     }
 
-    public Decision decideAction(int playerScore, int diceScore) {
-<span class="fc bfc" id="L30" title="All 4 branches covered.">        if (playerScore &lt; 0 || diceScore &lt; 0) {</span>
-<span class="fc" id="L31">            throw new IllegalArgumentException(&quot;Player score and dice value must be non-negative.&quot;);</span>
+    // Decide the action of the bot
+    public Action decideAction(int playerScore, int diceScore) {
+<span class="fc bfc" id="L34" title="All 4 branches covered.">        if (playerScore &lt; 0 || diceScore &lt; 0) {</span>
+<span class="fc" id="L35">            throw new IllegalArgumentException(&quot;Player score and dice value must be non-negative.&quot;);</span>
         }
 
-<span class="fc" id="L34">        int newScore = playerScore + diceScore;</span>
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        if(newScore &gt; scoreLimit) {</span>
-<span class="fc" id="L36">            return Decision.BUST;</span>
-<span class="pc bpc" id="L37" title="1 of 4 branches missed.">        } else if (newScore &gt; scoreLimit - 3 &amp;&amp; newScore &lt;= scoreLimit) {</span>
-<span class="fc" id="L38">            return Decision.HOLD;</span>
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        } else if (newScore &gt; scoreLimit - 10) {</span>
-<span class="fc" id="L40">            return Decision.STAY;</span>
+<span class="fc" id="L38">        int newScore = playerScore + diceScore;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if(newScore &gt; scoreLimit) {</span>
+<span class="fc" id="L40">            return Action.BUST;</span>
+<span class="pc bpc" id="L41" title="1 of 4 branches missed.">        } else if (newScore &gt; scoreLimit - 3 &amp;&amp; newScore &lt;= scoreLimit) {</span>
+<span class="fc" id="L42">            return Action.HOLD;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        } else if (newScore &gt; scoreLimit - 10) {</span>
+<span class="fc" id="L44">            return Action.STAY;</span>
         } else {
-<span class="fc" id="L42">            return Decision.ROLL;</span>
+<span class="fc" id="L46">            return Action.ROLL;</span>
         }
     }
 
+    // Checks if the game is over
     public boolean isGameOver(List&lt;Player&gt; players) {
-<span class="fc bfc" id="L47" title="All 4 branches covered.">        if (players == null || players.isEmpty()) {</span>
-<span class="fc" id="L48">            throw new IllegalArgumentException(&quot;Player list can not be empty or null.&quot;);</span>
+<span class="fc bfc" id="L52" title="All 4 branches covered.">        if (players == null || players.isEmpty()) {</span>
+<span class="fc" id="L53">            throw new IllegalArgumentException(&quot;Player list can not be empty or null.&quot;);</span>
         }
 
-<span class="fc bfc" id="L51" title="All 2 branches covered.">        for(Player player : players) {</span>
-<span class="pc bpc" id="L52" title="1 of 2 branches missed.">            if(player.getState() != State.NON_ACTIVE) {</span>
-<span class="nc" id="L53">                return false;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        for(Player player : players) {</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">            if(player.getState() != State.NON_ACTIVE) {</span>
+<span class="nc" id="L58">                return false;</span>
             }
-<span class="fc" id="L55">        }</span>
-<span class="fc" id="L56">        return true;</span>
+<span class="fc" id="L60">        }</span>
+<span class="fc" id="L61">        return true;</span>
     }
 
+    // Determine the winner
     public Player determineWinner(List&lt;Player&gt; players) {
-<span class="fc bfc" id="L60" title="All 4 branches covered.">        if (players == null || players.isEmpty()) {</span>
-<span class="fc" id="L61">            throw new IllegalArgumentException(&quot;Player list can not be empty  or null.&quot;);</span>
+<span class="pc bpc" id="L66" title="1 of 4 branches missed.">        if (players == null || players.isEmpty()) {</span>
+<span class="fc" id="L67">            throw new IllegalArgumentException(&quot;Player list can not be empty  or null.&quot;);</span>
         }
 
-<span class="fc" id="L64">        Player winner = players.get(0);</span>
-<span class="fc bfc" id="L65" title="All 2 branches covered.">        for (int i = 1; i &lt; players.size(); i++) {</span>
-<span class="fc" id="L66">            Player currentPlayer = players.get(i);</span>
+<span class="nc" id="L70">        Player winner = players.get(0);</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        for (int i = 1; i &lt; players.size(); i++) {</span>
+<span class="nc" id="L72">            Player currentPlayer = players.get(i);</span>
 
-<span class="fc bfc" id="L68" title="All 2 branches covered.">            if (currentPlayer.getScore() &lt;= scoreLimit &amp;&amp; </span>
-<span class="pc bpc" id="L69" title="1 of 4 branches missed.">                (scoreLimit - currentPlayer.getScore() &lt; scoreLimit - winner.getScore() || winner.getScore() &gt; scoreLimit)) {</span>
-<span class="fc" id="L70">                winner = currentPlayer;</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (currentPlayer.getScore() &lt;= scoreLimit &amp;&amp; </span>
+<span class="nc bnc" id="L75" title="All 4 branches missed.">                (scoreLimit - currentPlayer.getScore() &lt; scoreLimit - winner.getScore() || winner.getScore() &gt; scoreLimit)) {</span>
+<span class="nc" id="L76">                winner = currentPlayer;</span>
             }
         }
-<span class="fc" id="L73">        return winner;</span>
+<span class="nc" id="L79">        return winner;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

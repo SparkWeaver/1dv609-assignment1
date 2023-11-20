@@ -3,108 +3,112 @@
 import java.util.List;
 import java.util.Scanner;
 
-import com.dicegame.Rule.Decision;
+import com.dicegame.Rule.Action;
 
-<span class="fc" id="L8">public class View {</span>
+public class View {
 
-<span class="fc" id="L10">    private Scanner scanner = new Scanner(System.in);</span>
+    private Scanner scanner;
+
+<span class="fc" id="L12">    public View(Scanner scanner) {</span>
+<span class="fc" id="L13">        this.scanner = scanner;</span>
+<span class="fc" id="L14">    }</span>
 
     public void printTitleAndInstructions() {
-<span class="fc" id="L13">        System.out.println(&quot;&quot;);</span>
-<span class="fc" id="L14">        System.out.println(&quot;[ title ]&quot;);</span>
-<span class="fc" id="L15">        System.out.println(&quot;[ instructions ]&quot;);</span>
-<span class="fc" id="L16">        System.out.println(&quot;&quot;);</span>
-<span class="fc" id="L17">    }</span>
+<span class="fc" id="L17">        System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L18">        System.out.println(&quot;Welcome to Dice Blackjack!&quot;);</span>
+<span class="fc" id="L19">        System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L20">        System.out.println(&quot;The rules are simple:&quot;);</span>
+<span class="fc" id="L21">        System.out.println(&quot; - Enter your player name to begin.&quot;);</span>
+<span class="fc" id="L22">        System.out.println(&quot; - You have three attempts each turn.&quot;);</span>
+<span class="fc" id="L23">        System.out.println(&quot; - The player that gets closest to 21 wins.&quot;);</span>
+<span class="fc" id="L24">        System.out.println(&quot; - If you get over 21 you lose.&quot;);</span>
+<span class="fc" id="L25">        System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L26">    }</span>
 
     public String promptForPlayerName() {
         String name;
         while (true) {
-<span class="fc" id="L22">            System.out.print(&quot;Enter your name: &quot;);</span>
-<span class="fc" id="L23">            name = scanner.nextLine();</span>
+<span class="fc" id="L31">            System.out.print(&quot;Enter your name: &quot;);</span>
+<span class="fc" id="L32">            name = scanner.nextLine();</span>
 
-<span class="fc bfc" id="L25" title="All 6 branches covered.">            if (name != null &amp;&amp; !name.trim().isEmpty() &amp;&amp; name.trim().length() &lt; 30) {</span>
-<span class="fc" id="L26">                return name;</span>
+<span class="fc bfc" id="L34" title="All 6 branches covered.">            if (name != null &amp;&amp; !name.trim().isEmpty() &amp;&amp; name.trim().length() &lt; 30) {</span>
+<span class="fc" id="L35">                return name;</span>
             }
         }
     }
 
-    public Decision promptForPlayerDefaultDecision(int score, int diceSum) {
+    public Action promptForPlayerDefaultAction(int score, int diceSum) {
 
-<span class="fc" id="L33">        System.out.println(&quot;&quot;);</span>
-<span class="fc" id="L34">        System.out.println(&quot;Score: &quot; + score + &quot; Dice roll: &quot; + diceSum);</span>
-<span class="fc" id="L35">        System.out.println(&quot;&quot;);</span>
-<span class="fc" id="L36">        System.out.println(&quot;1. Throw again&quot;);</span>
-<span class="fc" id="L37">        System.out.println(&quot;2. Stay&quot;);</span>
-<span class="fc" id="L38">        System.out.println(&quot;3. Hold&quot;);</span>
-<span class="fc" id="L39">        System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L42">        System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L43">        System.out.println(&quot;Score: &quot; + score + &quot; Dice roll: &quot; + diceSum);</span>
+<span class="fc" id="L44">        System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L45">        System.out.println(&quot;1. Throw again&quot;);</span>
+<span class="fc" id="L46">        System.out.println(&quot;2. Stay&quot;);</span>
+<span class="fc" id="L47">        System.out.println(&quot;3. Hold&quot;);</span>
+<span class="fc" id="L48">        System.out.println(&quot;&quot;);</span>
 
-<span class="pc bpc" id="L41" title="1 of 4 branches missed.">        switch (scanner.nextInt()) {</span>
+<span class="pc bpc" id="L50" title="1 of 4 branches missed.">        switch (scanner.nextInt()) {</span>
             case 1:
-<span class="fc" id="L43">                return Rule.Decision.ROLL;</span>
+<span class="fc" id="L52">                return Rule.Action.ROLL;</span>
             case 2:
-<span class="fc" id="L45">                return Rule.Decision.STAY;</span>
+<span class="fc" id="L54">                return Rule.Action.STAY;</span>
             case 3:
-<span class="fc" id="L47">                return Rule.Decision.HOLD;</span>
+<span class="fc" id="L56">                return Rule.Action.HOLD;</span>
             default:
-<span class="nc" id="L49">                return Rule.Decision.BUST;</span>
+<span class="nc" id="L58">                return Rule.Action.BUST;</span>
         }
     }
 
-    public Decision promptForPlayerBustDecision(int score, int diceSum) {
-<span class="nc" id="L54">        System.out.println(&quot;&quot;);</span>
-<span class="nc" id="L55">        System.out.println(&quot;Score: &quot; + score + &quot; Dice roll: &quot; + diceSum);</span>
-<span class="nc" id="L56">        System.out.println(&quot;&quot;);</span>
-<span class="nc" id="L57">        System.out.println(&quot;This is a BUST!&quot;);</span>
-<span class="nc" id="L58">        System.out.println(&quot;1. Continue&quot;);</span>
-<span class="nc" id="L59">        System.out.println(&quot;&quot;);</span>
+    public Action promptForPlayerBustAction(int score, int diceSum) {
+<span class="nc" id="L63">        System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L64">        System.out.println(&quot;Score: &quot; + score + &quot; Dice roll: &quot; + diceSum);</span>
+<span class="nc" id="L65">        System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L66">        System.out.println(&quot;This is a BUST!&quot;);</span>
+<span class="nc" id="L67">        System.out.println(&quot;1. Continue&quot;);</span>
+<span class="nc" id="L68">        System.out.println(&quot;&quot;);</span>
 
-<span class="nc bnc" id="L61" title="All 2 branches missed.">        switch (scanner.nextInt()) {</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        switch (scanner.nextInt()) {</span>
             case 1:
-<span class="nc" id="L63">                return Rule.Decision.BUST;</span>
+<span class="nc" id="L72">                return Rule.Action.BUST;</span>
             default:
-<span class="nc" id="L65">                return Rule.Decision.BUST;</span>
+<span class="nc" id="L74">                return Rule.Action.BUST;</span>
         }
     }
 
-    public Decision promptForPlayerNoMoreTurnsDecision(int score, int diceSum) {
-<span class="fc" id="L70">        System.out.println(&quot;&quot;);</span>
-<span class="fc" id="L71">        System.out.println(&quot;Score: &quot; + score + &quot; Dice roll: &quot; + diceSum);</span>
-<span class="fc" id="L72">        System.out.println(&quot;&quot;);</span>
-<span class="fc" id="L73">        System.out.println(&quot;No more roll's&quot;);</span>
-<span class="fc" id="L74">        System.out.println(&quot;1. Continue&quot;);</span>
-<span class="fc" id="L75">        System.out.println(&quot;2. Hold&quot;);</span>
-<span class="fc" id="L76">        System.out.println(&quot;&quot;);</span>
+    public Action promptForPlayerNoMoreTurnsAction(int score, int diceSum) {
+<span class="fc" id="L79">        System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L80">        System.out.println(&quot;Score: &quot; + score + &quot; Dice roll: &quot; + diceSum);</span>
+<span class="fc" id="L81">        System.out.println(&quot;&quot;);</span>
+<span class="fc" id="L82">        System.out.println(&quot;No more roll's&quot;);</span>
+<span class="fc" id="L83">        System.out.println(&quot;1. Continue&quot;);</span>
+<span class="fc" id="L84">        System.out.println(&quot;2. Hold&quot;);</span>
+<span class="fc" id="L85">        System.out.println(&quot;&quot;);</span>
 
-<span class="pc bpc" id="L78" title="1 of 3 branches missed.">        switch (scanner.nextInt()) {</span>
+<span class="pc bpc" id="L87" title="1 of 3 branches missed.">        switch (scanner.nextInt()) {</span>
             case 1:
-<span class="fc" id="L80">                return Rule.Decision.STAY;</span>
+<span class="fc" id="L89">                return Rule.Action.STAY;</span>
             case 2:
-<span class="fc" id="L82">                return Rule.Decision.HOLD;</span>
+<span class="fc" id="L91">                return Rule.Action.HOLD;</span>
             default:
-<span class="nc" id="L84">                return Rule.Decision.STAY;</span>
+<span class="nc" id="L93">                return Rule.Action.STAY;</span>
         }
     }
 
     public void printBotState(Player player, List&lt;Dice&gt; dices) {
 
-<span class="fc" id="L90">        String output = String.format(&quot;%s: rolled %d and %d new score %d&quot;, player.getName(), dices.get(0).getValue(),dices.get(1).getValue(), player.getScore());</span>
-<span class="fc bfc" id="L91" title="All 2 branches covered.">        if (player.getState() == Player.State.ACTIVE) {</span>
-<span class="fc" id="L92">            output += &quot; active&quot;;</span>
+<span class="nc" id="L99">        String output = String.format(&quot;%s: rolled %d and %d new score %d&quot;, player.getName(), dices.get(0).getValue(),dices.get(1).getValue(), player.getScore());</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (player.getState() == Player.State.ACTIVE) {</span>
+<span class="nc" id="L101">            output += &quot; active&quot;;</span>
         } else {
-<span class="fc" id="L94">            output += &quot; non-active&quot;;</span>
+<span class="nc" id="L103">            output += &quot; non-active&quot;;</span>
         }
-<span class="fc" id="L96">        System.out.println(output);</span>
-<span class="fc" id="L97">	}</span>
+<span class="nc" id="L105">        System.out.println(output);</span>
+<span class="nc" id="L106">	}</span>
 
     public void printWinner(Player player) {
-<span class="fc" id="L100">        String output = String.format(&quot;\nThe winner is %s, with a score of %d&quot;, player.getName(), player.getScore());</span>
-<span class="fc" id="L101">        System.out.println(output);</span>
-<span class="fc" id="L102">    }</span>
-
-    /** Methods below should be removed when done */
-    public void setScanner(Scanner scanner) {
-<span class="fc" id="L106">        this.scanner = scanner;</span>
-<span class="fc" id="L107">    }</span>
+<span class="nc" id="L109">        String output = String.format(&quot;\nThe winner is %s, with a score of %d&quot;, player.getName(), player.getScore());</span>
+<span class="nc" id="L110">        System.out.println(output);</span>
+<span class="nc" id="L111">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

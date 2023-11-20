@@ -2,7 +2,7 @@
 
 import java.util.List;
 
-import com.dicegame.Rule.Decision;
+import com.dicegame.Rule.Action;
 
 public class BotPlayer extends Player {
 
@@ -19,12 +19,12 @@ public class BotPlayer extends Player {
 <span class="fc bfc" id="L19" title="All 2 branches covered.">            for(Dice dice : dices) {</span>
 <span class="fc" id="L20">                diceSum += dice.roll();</span>
 <span class="fc" id="L21">            } </span>
-<span class="fc" id="L22">            Decision decision = rule.decideAction(score, diceSum);</span>
+<span class="fc" id="L22">            Action decision = rule.decideAction(score, diceSum);</span>
 
-<span class="fc bfc" id="L24" title="All 4 branches covered.">            if(decision == Decision.BUST || decision == Decision.HOLD) {</span>
+<span class="fc bfc" id="L24" title="All 4 branches covered.">            if(decision == Action.BUST || decision == Action.HOLD) {</span>
 <span class="fc" id="L25">                state = State.NON_ACTIVE;</span>
 <span class="fc" id="L26">                break;</span>
-<span class="fc bfc" id="L27" title="All 2 branches covered.">            } else if (decision == Decision.STAY) {</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            } else if (decision == Action.STAY) {</span>
 <span class="fc" id="L28">                break;</span>
             }
         }

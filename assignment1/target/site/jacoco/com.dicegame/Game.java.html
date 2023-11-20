@@ -3,103 +3,83 @@
 import java.util.LinkedList;
 import java.util.List;
 
-import com.dicegame.Player.State;
-
 public class Game {
 
-<span class="fc" id="L10">    private enum PlayerName {</span>
-<span class="fc" id="L11">        Emma,</span>
-<span class="fc" id="L12">        James,</span>
-<span class="fc" id="L13">        Sophia</span>
+<span class="fc" id="L8">    private enum BotName {</span>
+<span class="fc" id="L9">        Emma,</span>
+<span class="fc" id="L10">        James,</span>
+<span class="fc" id="L11">        Sophia</span>
     }
 
-<span class="fc" id="L16">    private final String RESERVENAME = &quot;Jon&quot;;</span>
-    private List&lt;Player&gt; players;
-    private List&lt;Dice&gt; dices;
+<span class="fc" id="L14">    private final String RESERVENAME = &quot;Jon&quot;;</span>
+    private LinkedList&lt;Player&gt; players;
+    private LinkedList&lt;Dice&gt; dices;
     private boolean isGameActive;
     private boolean isGameOver;
     private View view;
     private Rule rule;
 
-<span class="fc" id="L24">    public Game(String name, View view) {</span>
-<span class="fc" id="L25">        rule = new Rule(21);</span>
-<span class="fc" id="L26">        players = new LinkedList&lt;Player&gt;();</span>
-<span class="fc" id="L27">        dices = new LinkedList&lt;Dice&gt;();</span>
+    // Initialize the game.
+<span class="fc" id="L23">    public Game(LinkedList&lt;Player&gt; players, LinkedList&lt;Dice&gt; dices, View view, Rule rule) {</span>
 
-<span class="fc" id="L29">        players.add(new HumanPlayer(name, view));</span>
-<span class="fc bfc" id="L30" title="All 2 branches covered.">        for (PlayerName playerName : PlayerName.values()) {</span>
-<span class="fc" id="L31">            Player newPlayer = new BotPlayer(playerName.name());</span>
-<span class="pc bpc" id="L32" title="1 of 2 branches missed.">            if(players.contains(newPlayer)) {</span>
-<span class="nc" id="L33">                players.add(new BotPlayer(RESERVENAME));</span>
+<span class="fc" id="L25">        this.players = players;</span>
+<span class="fc" id="L26">        this.dices = dices;</span>
+<span class="fc" id="L27">        this.view = view;</span>
+<span class="fc" id="L28">        this.rule = rule;</span>
+
+        // Build Bots
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        for (BotName playerName : BotName.values()) {</span>
+<span class="fc" id="L32">            Player newPlayer = new BotPlayer(playerName.name());</span>
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">            if(players.contains(newPlayer)) {</span>
+<span class="nc" id="L34">                players.add(new BotPlayer(RESERVENAME));</span>
             } else {
-<span class="fc" id="L35">                players.add(newPlayer);</span>
+<span class="fc" id="L36">                players.add(newPlayer);</span>
             }
         }
 
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        for(int i = 0; i &lt; 2; i++) {</span>
-<span class="fc" id="L40">            dices.add(new Dice());</span>
-        }
+<span class="fc" id="L40">        isGameActive = false;</span>
+<span class="fc" id="L41">        isGameOver = false;</span>
+<span class="fc" id="L42">    }</span>
 
-<span class="fc" id="L43">        this.view = view;</span>
-<span class="fc" id="L44">        isGameActive = false;</span>
-<span class="fc" id="L45">        isGameOver = false;</span>
-<span class="fc" id="L46">    }</span>
-
+    // Starts the game.
     public void start() {
-<span class="fc" id="L49">        isGameActive = true;</span>
-<span class="fc bfc" id="L50" title="All 2 branches covered.">        while(isGameActive) {</span>
-<span class="fc bfc" id="L51" title="All 2 branches covered.">            for(Player player : players) {</span>
+<span class="nc" id="L46">        isGameActive = true;</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        while(isGameActive) {</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            for(Player player : players) {</span>
 
-<span class="fc bfc" id="L53" title="All 4 branches covered.">                if(player instanceof HumanPlayer &amp;&amp; player.getState() == Player.State.ACTIVE) {</span>
-<span class="fc" id="L54">                    player.rollDice(dices);</span>
-<span class="fc bfc" id="L55" title="All 2 branches covered.">                } else if (player.getState() == Player.State.ACTIVE) {</span>
-<span class="fc" id="L56">                    player.rollDice(dices);</span>
-<span class="fc" id="L57">                    view.printBotState(player, dices);</span>
+<span class="nc bnc" id="L50" title="All 4 branches missed.">                if(player instanceof HumanPlayer &amp;&amp; player.getState() == Player.State.ACTIVE) {</span>
+<span class="nc" id="L51">                    player.rollDice(dices);</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">                } else if (player.getState() == Player.State.ACTIVE) {</span>
+<span class="nc" id="L53">                    player.rollDice(dices);</span>
+<span class="nc" id="L54">                    view.printBotState(player, dices);</span>
                 }
-<span class="fc" id="L59">            }</span>
-<span class="fc bfc" id="L60" title="All 2 branches covered.">            if(allPlayersAreDone()) {</span>
-<span class="fc" id="L61">                isGameActive = false;</span>
-<span class="fc" id="L62">                isGameOver = true;</span>
+<span class="nc" id="L56">            }</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">            if(rule.isGameOver(players)) {</span>
+<span class="nc" id="L58">                isGameActive = false;</span>
+<span class="nc" id="L59">                isGameOver = true;</span>
             }
     
         }
-<span class="fc" id="L66">        view.printWinner(rule.determineWinner(players));</span>
-<span class="fc" id="L67">    }</span>
+<span class="nc" id="L63">        view.printWinner(rule.determineWinner(players));</span>
+<span class="nc" id="L64">    }</span>
 
-    private boolean allPlayersAreDone() {
-<span class="fc bfc" id="L70" title="All 2 branches covered.">        for(Player player : players) {</span>
-<span class="fc bfc" id="L71" title="All 2 branches covered.">            if(player.getState() != State.NON_ACTIVE) {</span>
-<span class="fc" id="L72">                return false;</span>
-            }
-<span class="fc" id="L74">        }</span>
-<span class="fc" id="L75">        return true;</span>
-    }
-
-
-    /** Below should be removed later on */
-
+    /**
+     * Methods I might remove or keep.
+     */
     public List&lt;Player&gt; getPlayers() {
-<span class="fc" id="L82">        return players;</span>
+<span class="fc" id="L70">        return players;</span>
     }
 
     public List&lt;Dice&gt; getDices() {
-<span class="fc" id="L86">        return dices;</span>
+<span class="fc" id="L74">        return dices;</span>
     }
 
     public boolean isActive() {
-<span class="fc" id="L90">        return isGameActive;</span>
+<span class="nc" id="L78">        return isGameActive;</span>
     }
 
     public boolean isOver() {
-<span class="fc" id="L94">        return isGameOver;</span>
+<span class="nc" id="L82">        return isGameOver;</span>
     }
-
-    public void setDice(List&lt;Dice&gt; dices) {
-<span class="fc" id="L98">        this.dices = dices;</span>
-<span class="fc" id="L99">    }</span>
-
-    public void setPlayers(List&lt;Player&gt; players) {
-<span class="fc" id="L102">        this.players = players;</span>
-<span class="fc" id="L103">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

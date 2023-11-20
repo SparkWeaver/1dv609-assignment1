@@ -2,24 +2,25 @@
 
 import java.util.Random;
 
+// A basic dice object.
 public class Dice {
 
-<span class="fc" id="L7">    private Random random = new Random();</span>
-<span class="fc" id="L8">    private final int MIN = 1;</span>
-<span class="fc" id="L9">    private final int MAX = 6;</span>
+<span class="fc" id="L8">    private Random random = new Random();</span>
+<span class="fc" id="L9">    private final int MIN = 1;</span>
+<span class="fc" id="L10">    private final int MAX = 6;</span>
     private int value;
 
-<span class="fc" id="L12">    public Dice() {</span>
-<span class="fc" id="L13">        value = roll();</span>
-<span class="fc" id="L14">    }</span>
+<span class="fc" id="L13">    public Dice() {</span>
+<span class="fc" id="L14">        value = roll();</span>
+<span class="fc" id="L15">    }</span>
 
     public int getValue() {
-<span class="fc" id="L17">        return value;</span>
+<span class="fc" id="L18">        return value;</span>
     }
 
     public int roll() {
-<span class="fc" id="L21">        value = random.nextInt((MAX - MIN) + 1) + MIN;</span>
-<span class="fc" id="L22">        return getValue();</span>
+<span class="fc" id="L22">        value = random.nextInt((MAX - MIN) + 1) + MIN;</span>
+<span class="fc" id="L23">        return getValue();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
