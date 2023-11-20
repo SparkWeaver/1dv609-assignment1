@@ -2,10 +2,12 @@ package com.dicegame;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,17 +17,26 @@ public class RuleTest {
 
     private Rule rule;
     private int scoreLimit;
+    private Player player1;
+    private Player player2;
+    private Player player3;
+    private List<Player> players;
 
     @Before
     public void setUp() {
         scoreLimit = 21;
         rule = new Rule(scoreLimit);
+        player1 = Mockito.mock(Player.class);
+        player2 = Mockito.mock(Player.class);
+        player3 = Mockito.mock(Player.class);
+        players = Arrays.asList(player1, player2, player3);
     }
 
     @Test
     public void getScoreLimitReturnTheScoreLimit() {
         assertEquals(scoreLimit, rule.getScoreLimit());
     }
+
 
     @Test
     public void testRollAgainDecision() {
@@ -47,27 +58,47 @@ public class RuleTest {
         assertEquals(Rule.Action.BUST, rule.decideAction(10, 12));
     }
 
+
+
     @Test
     public void isGameOverShouldReturnTrueIfAllPlayersAreNonActive(){
-        Player player1 = Mockito.mock(Player.class);
-        Player player2 = Mockito.mock(Player.class);
 
         when(player1.getState()).thenReturn(Player.State.NON_ACTIVE);
         when(player2.getState()).thenReturn(Player.State.NON_ACTIVE);
+        when(player3.getState()).thenReturn(Player.State.NON_ACTIVE);
 
-        assertTrue(rule.isGameOver(Arrays.asList(player1, player2)));
+        assertTrue(rule.isGameOver(players));
     }
 
     @Test
     public void isGameOverShouldReturnFalseIfNotAllPlayersAreNonActive(){
-        Player player1 = Mockito.mock(Player.class);
-        Player player2 = Mockito.mock(Player.class);
 
-        when(player1.getState()).thenReturn(Player.State.ACTIVE);
-        when(player2.getState()).thenReturn(Player.State.NON_ACTIVE);
+        when(player1.getState()).thenReturn(Player.State.NON_ACTIVE);
+        when(player2.getState()).thenReturn(Player.State.ACTIVE);
+        when(player3.getState()).thenReturn(Player.State.NON_ACTIVE);
 
-        assertFalse(rule.isGameOver(Arrays.asList(player1, player2)));
+        assertFalse(rule.isGameOver(players));
     }
+
+
+    @Test
+    public void determineWinnerReturnsTheCorrectWinningPlayer() {
+        when(player1.getScore()).thenReturn(24);
+        when(player2.getScore()).thenReturn(21);
+        when(player3.getScore()).thenReturn(20);
+
+        assertEquals(player2, rule.determineWinner(players));
+    }
+
+    @Test
+    public void determineWinnerReturnsNullIfThereIsNoWinningPlayer() {
+        when(player1.getScore()).thenReturn(24);
+        when(player2.getScore()).thenReturn(24);
+        when(player3.getScore()).thenReturn(24);
+
+        assertNull(rule.determineWinner(players));
+    }
+
 
     @Test(expected = IllegalArgumentException.class)
     public void decideActionShouldThrowExceptionPlayerScoreIsNegative() {
