@@ -14,8 +14,8 @@ public class Rule {
     private static int scoreLimit = 21;
 
     public Rule(int scoreLimit) {
-        if (scoreLimit < 0) {
-            throw new IllegalArgumentException("Player score and dice value must be non-negative.");
+        if (scoreLimit < 2) {
+            throw new IllegalArgumentException("Rule score limit cant be less than minimum dice score");
         }
         this.scoreLimit = scoreLimit;
     }

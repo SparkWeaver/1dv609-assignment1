@@ -22,7 +22,7 @@ public class RuleTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void constructorShouldThrowExceptionWhenProvidedScoreLimitLessThanOne() {
+    public void constructorShouldThrowExceptionWhenProvidedScoreLimitLessThanTwo() {
         new Rule(1);
     }
 
