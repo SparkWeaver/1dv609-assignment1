@@ -17,7 +17,7 @@ public class HumanPlayer extends Player {
     public void rollDice(List&lt;Dice&gt; dices) {
         
 <span class="fc" id="L19">        int diceSum = 0;</span>
-<span class="fc" id="L20">        Decision decision = Decision.END;</span>
+<span class="fc" id="L20">        Decision decision = Decision.ROLL;</span>
         
 <span class="fc bfc" id="L22" title="All 2 branches covered.">        for(int i = 0; i &lt; 3; i++) {</span>
 <span class="fc" id="L23">            diceSum = 0;</span>
@@ -38,23 +38,18 @@ public class HumanPlayer extends Player {
                     }
                 }
             } else {
-<span class="fc" id="L41">                decision = view.promptForPlayerDecision(score, diceSum);</span>
-<span class="pc bpc" id="L42" title="1 of 2 branches missed.">                if (decision == Decision.END) {</span>
-<span class="nc" id="L43">                    System.exit(0);</span>
-                }
-<span class="fc bfc" id="L45" title="All 2 branches covered.">                if(decision == Decision.HOLD) {</span>
-<span class="fc" id="L46">                    state = State.NON_ACTIVE;</span>
-<span class="fc" id="L47">                    break;</span>
-<span class="fc bfc" id="L48" title="All 2 branches covered.">                } else if (decision == Decision.STAY) {</span>
-<span class="fc" id="L49">                    break;</span>
+<span class="fc" id="L41">                decision = view.promptForPlayerDefaultDecision(score, diceSum);</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">                if(decision == Decision.HOLD) {</span>
+<span class="fc" id="L43">                    state = State.NON_ACTIVE;</span>
+<span class="fc" id="L44">                    break;</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">                } else if (decision == Decision.STAY) {</span>
+<span class="fc" id="L46">                    break;</span>
                 }
             }
-<span class="pc bpc" id="L52" title="1 of 2 branches missed.">            if (decision == Decision.END) {</span>
-<span class="nc" id="L53">                System.exit(0);</span>
-            }
+
         }
-<span class="fc" id="L56">        score += diceSum;</span>
-<span class="fc" id="L57">    }</span>
+<span class="fc" id="L51">        score += diceSum;</span>
+<span class="fc" id="L52">    }</span>
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
