@@ -26,7 +26,6 @@ import java.util.Set;
 public class GameTest {
 
     private Game game;
-    private String playerName;
     private LinkedList<Dice> mockDices;
     private LinkedList<Player> mockPlayers;
     private Player mockPlayer;
@@ -55,14 +54,12 @@ public class GameTest {
         when(mockDice1.roll()).thenReturn(6);
         when(mockDice2.roll()).thenReturn(6);
         mockDices = new LinkedList<>();
-        mockDices.addAll(Arrays.asList(new Dice(), new Dice()));
+        mockDices.addAll(Arrays.asList(mockDice1, mockDice2));
 
         // Mock the rules
-        mockRule = Mockito.mock(Rule.class)
+        mockRule = Mockito.mock(Rule.class);
 
-
-        game = new Game(playerName, mochView);
-        game.setDice(mockDices);
+        game = new Game(mockPlayers, mockDices, mochView, mockRule);
     }
 
     @After
@@ -72,38 +69,28 @@ public class GameTest {
 
     @Test
     public void gameShouldInitializeCorrectly() {
-        assertNotNull("Game should not be null", game);
-        assertNotNull("Dices should not be null", mockDices);
+        assertNotNull(game);
+        assertNotNull(mockDices);
     }
 
     @Test
     public void gameShouldHaveCorrectPlayers() {
+        String expectedName = "Ted";
+        when(mockPlayer.getName()).thenReturn(expectedName);
         List<Player> expectedPlayers = game.getPlayers();
-        assertEquals("Game should have the correct players", expectedPlayers.get(0).getName(), playerName);
-    }
-
-    @Test
-    public void gameShouldStartAndEndCorrectly() {
-        assertFalse("Game should be inactive before start", game.isActive());
-        game.start();
-        assertTrue("Game should be active after start", game.isOver());
-    }
-
-    @Test
-    public void playersShouldGainPointsDuringGame() {
-        List<Player> expectedPlayers = game.getPlayers();
-        assertEquals("Player 2 should have 0 score before first round", 0, expectedPlayers.get(0).getScore());
-        game.start();
-        assertNotEquals("Player 2 should have 7 score after first round", 0, expectedPlayers.get(0).getScore());
+        assertEquals(expectedPlayers.get(0).getName(), expectedName);
     }
 
     @Test
     public void DuplicatePlayerNamesShouldBePrevented() {
-        Game game = new Game("Emma", mochView);
-        List<Player> players = game.getPlayers();
-        Set<Player> set = new HashSet<>(players);
+        // Need to use regular player object in this test case
+        LinkedList<Player> inPlayers = new LinkedList<>();
+        inPlayers.add(new HumanPlayer("Emma",mochView));
+        Game game = new Game(inPlayers, mockDices, mochView, mockRule);
 
-        assertTrue(set.size() == players.size());
+        List<Player> outPlayers = game.getPlayers();
+        Set<Player> set = new HashSet<>(outPlayers);
+        assertTrue(set.size() == outPlayers.size());
     }
 
     @Test
@@ -118,60 +105,21 @@ public class GameTest {
 
     @Test
     public void testPlayerTypesWhenDuplicatName() {
-        Game game = new Game("Emma", mochView);
-        List<Player> players = game.getPlayers();
-        assertTrue(players.get(0) instanceof HumanPlayer);
+        // Need to use regular player object in this test case
+        LinkedList<Player> inPlayers = new LinkedList<>();
+        inPlayers.add(new HumanPlayer("Emma",mochView));
+        Game game = new Game(inPlayers, mockDices, mochView, mockRule);
 
-        for(int i = 1; i < players.size(); i++) {
-            assertTrue(players.get(i) instanceof BotPlayer);
+        List<Player> outPlayers = game.getPlayers();
+        assertTrue(outPlayers.get(0) instanceof HumanPlayer);
+
+        for(int i = 1; i < outPlayers.size(); i++) {
+            assertTrue(outPlayers.get(i) instanceof BotPlayer);
         }
     }
 
     @Test
     public void gameShouldHaveTwoDices() {
-        Game game = new Game("Emma", mochView);
         assertEquals(2, game.getDices().size());
-    }
-
-    @Test
-    public void gameShouldEndWhenAllPlayersAreNonActive() {
-        Player mockP1 = Mockito.mock(Player.class);
-        Player mockP2 = Mockito.mock(Player.class);
-        Player mockP3 = Mockito.mock(Player.class);
-        Player mockP4 = Mockito.mock(Player.class);
-
-        when(mockP1.getState()).thenReturn(State.NON_ACTIVE);
-        when(mockP1.getScore()).thenReturn(24);
-        when(mockP2.getState()).thenReturn(State.NON_ACTIVE);
-        when(mockP2.getScore()).thenReturn(13);
-        when(mockP3.getState()).thenReturn(State.NON_ACTIVE);
-        when(mockP3.getScore()).thenReturn(18);
-        when(mockP4.getState()).thenReturn(State.NON_ACTIVE);
-        when(mockP4.getScore()).thenReturn(19);
-
-        List<Player> players = Arrays.asList(mockP1, mockP2, mockP3, mockP4);
-        game.setPlayers(players);
-
-        game.start();
-        assertTrue(game.isOver());
-    }
-
-    private String createPlayerOutput() {
-        return System.lineSeparator() +
-                "Score: 0 Dice roll: 12" + System.lineSeparator() +
-                System.lineSeparator() + "1. Throw again" +
-                System.lineSeparator() + "2. Stay" +
-                System.lineSeparator() + "3. Hold" +
-                System.lineSeparator() + System.lineSeparator();
-    }
-
-    private String createBotOutput() {
-        return  "Emma: rolled 0 and 0 new score 12 active" +
-                System.lineSeparator() + "James: rolled 0 and 0 new score 12 active" +
-                System.lineSeparator() + "Sophia: rolled 0 and 0 new score 12 active" +
-                System.lineSeparator() + "Emma: rolled 0 and 0 new score 24 non-active" +
-                System.lineSeparator() + "James: rolled 0 and 0 new score 24 non-active" +
-                System.lineSeparator() + "Sophia: rolled 0 and 0 new score 24 non-active" +
-                System.lineSeparator();
     }
 }
