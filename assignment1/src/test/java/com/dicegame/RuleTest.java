@@ -21,38 +21,38 @@ public class RuleTest {
         assertEquals(scoreLimit, rule.getScoreLimit());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void constructorShouldThrowExceptionWhenProvidedScoreLimitLessThanTwo() {
-        new Rule(1);
-    }
-
     @Test
     public void testRollAgainDecision() {
-        assertEquals(Rule.Decision.ROLL, rule.makeDecision(5, 5));
+        assertEquals(Rule.Decision.ROLL, rule.decideAction(5, 5));
     }
 
     @Test
     public void testStayDecision() {
-        assertEquals(Rule.Decision.STAY, rule.makeDecision(10, 5));
-    }
-
-    @Test
-    public void testBustDecision() {
-        assertEquals(Rule.Decision.BUST, rule.makeDecision(10, 12));
+        assertEquals(Rule.Decision.STAY, rule.decideAction(10, 5));
     }
 
     @Test
     public void testHoldDecision() {
-        assertEquals(Rule.Decision.HOLD, rule.makeDecision(10, 9));
+        assertEquals(Rule.Decision.HOLD, rule.decideAction(10, 9));
+    }
+
+    @Test
+    public void testBustDecision() {
+        assertEquals(Rule.Decision.BUST, rule.decideAction(10, 12));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void makeDecisionShouldThrowExceptionPlayerScoreIsNegative() {
-        rule.makeDecision(-1, 2);
+        rule.decideAction(-1, 2);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void makeDecisionShouldThrowExceptionDiceValueIsNegative() {
-        rule.makeDecision(2, -1);
+        rule.decideAction(2, -1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorShouldThrowExceptionWhenProvidedScoreLimitLessThanTwo() {
+        new Rule(1);
     }
 }

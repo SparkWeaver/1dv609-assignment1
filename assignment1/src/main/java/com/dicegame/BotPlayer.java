@@ -19,7 +19,7 @@ public class BotPlayer extends Player {
             for(Dice dice : dices) {
                 diceSum += dice.roll();
             } 
-            Decision decision = rule.makeDecision(score, diceSum);
+            Decision decision = rule.decideAction(score, diceSum);
 
             if(decision == Decision.BUST || decision == Decision.HOLD) {
                 state = State.NON_ACTIVE;

@@ -24,12 +24,12 @@ public class Rule {
         return scoreLimit;
     }
 
-    public Decision makeDecision(int playerScore, int diceValue) {
-        if (playerScore < 0 || diceValue < 0) {
+    public Decision decideAction(int playerScore, int diceScore) {
+        if (playerScore < 0 || diceScore < 0) {
             throw new IllegalArgumentException("Player score and dice value must be non-negative.");
         }
 
-        int newScore = playerScore + diceValue;
+        int newScore = playerScore + diceScore;
         if(newScore > scoreLimit) {
             return Decision.BUST;
         } else if (newScore > scoreLimit - 3 && newScore <= scoreLimit) {
@@ -41,7 +41,7 @@ public class Rule {
         }
     }
 
-    public static Player determineTheWinner(List<Player> players) {
+    public static Player determineWinner(List<Player> players) {
         Player winner = players.get(0);
         for (int i = 1; i < players.size(); i++) {
             Player currentPlayer = players.get(i);

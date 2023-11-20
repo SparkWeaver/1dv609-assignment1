@@ -75,7 +75,7 @@ public class Game {
     }
 
     public Player determineTheWinner() {
-        return Rule.determineTheWinner(players);
+        return Rule.determineWinner(players);
     }
 
     /** Below should be removed later on */
