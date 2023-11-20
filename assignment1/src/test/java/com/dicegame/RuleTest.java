@@ -8,17 +8,22 @@ import org.junit.Test;
 public class RuleTest {
 
     private Rule rule;
-    private int goal;
+    private int scoreLimit;
 
     @Before
     public void setUp() {
-        goal = 21;
-        rule = new Rule(goal);
+        scoreLimit = 21;
+        rule = new Rule(scoreLimit);
     }
 
     @Test
-    public void getGoalReturnSetGoal() {
-        assertEquals(goal, rule.getGoal());
+    public void getScoreLimitReturnTheScoreLimit() {
+        assertEquals(scoreLimit, rule.getScoreLimit());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorShouldThrowExceptionWhenProvidedNegativeScoreLimit() {
+        new Rule(-10);
     }
 
     @Test
