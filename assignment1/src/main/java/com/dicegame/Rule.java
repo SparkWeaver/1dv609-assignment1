@@ -11,7 +11,8 @@ public class Rule {
         ROLL,
         STAY,
         HOLD,
-        BUST
+        BUST,
+        END
     }
 
     private int scoreLimit;
