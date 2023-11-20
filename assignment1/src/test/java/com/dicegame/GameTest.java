@@ -5,11 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.dicegame.Player.State;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
@@ -138,6 +134,7 @@ public class GameTest {
         when(mockDice1.getValue()).thenReturn(6);
         when(mockDice2.getValue()).thenReturn(6);
 
+        /*
         String expectedOutput = "Emma: rolled 6 and 6 new score 12 active" + System.lineSeparator() +
                 "James: rolled 6 and 6 new score 12 active" + System.lineSeparator() +
                 "Sophia: rolled 6 and 6 new score 12 active" + System.lineSeparator() +
@@ -148,6 +145,7 @@ public class GameTest {
                 "Jon: rolled 6 and 6 new score 24 non-active" + System.lineSeparator() +
                 System.lineSeparator() +
                 "The where no winner's this game." + System.lineSeparator();
+         */
 
         game.start();
 
