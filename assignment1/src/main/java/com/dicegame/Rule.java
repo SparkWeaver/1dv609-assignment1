@@ -44,7 +44,7 @@ public class Rule {
     }
 
     public boolean isGameOver(List<Player> players) {
-        if (players.isEmpty()) {
+        if (players == null || players.isEmpty()) {
             throw new IllegalArgumentException("Player list can not be empty.");
         }
 
